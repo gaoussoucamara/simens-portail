@@ -195,8 +195,22 @@ class PresentationController extends AbstractActionController
      	$layout->addChild($blogrightsidebar, 'blogrightsidebar');
      	$layout->addChild($blogfooter, 'blogfooter');
     	
+     	$resultat = $this->getContributeurTable()->fetchAll();
+     	$i = 0;
+     	$j = 0;
+     	$tableau = array(array());
+     	foreach ($resultat as $result){
+     		
+     		$tableau[$i][] = $result;
+     		$j++;
+     		if($j == 4){
+     			$i++;
+     			$j = 0; 
+     		}
+     	}
+     	
     	$view = new ViewModel(
-    			array('contributeurs' => $this->getContributeurTable()->fetchAll(), 
+    			array('contributeurs' => $tableau, 
     					'headtitle' => 'Système d\'Information MEdical National pour le Sénégal (SIMENS)', 'subheadtitle' => 'Les contributeurs au projet')
     	);
     	return $view;

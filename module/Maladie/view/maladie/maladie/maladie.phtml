@@ -49,7 +49,8 @@ $nbLigne = count($listeArticle);
 			</p>
 		<a class="button" href="<?php echo $this->basePath() . '/actualite/details-article/val/'.$listeArticle[$i]['code_article']; ?>">Lire la suite</a>
 		<br>
-		<span class="meta"><i style="font-style: italic;">Par:</i> <a href="#"><?php echo $listeArticle[$i]['prenom_personne'].'  '.$listeArticle[$i]['nom_personne']; ?></a><i style="font-style: italic;"> dans la cat&eacute;gorie: </i> <a href="#"><?php echo $listeArticle[$i]['nom_sous_categorie']; ?></a> </span>
+		<span class="meta"><i style="font-style: italic;">Par:</i> <a href="#"><?php echo $listeArticle[$i]['prenom_personne'].'  '.$listeArticle[$i]['nom_personne']; ?></a><i style="font-style: italic;"> cat&eacute;gorie: </i> <a href="#"><?php echo $listeArticle[$i]['nom_sous_categorie']; ?></a> </span>
+	    		<span class="meta" style="float: right;"><i style="font-style: italic;">Publi&eacute; le: </i> <?php echo $Control->convertDateTime($listeArticle[$i]['date_publication_article']); ?> </span>
 	</article>
 	<hr>
 	<?php } ?>

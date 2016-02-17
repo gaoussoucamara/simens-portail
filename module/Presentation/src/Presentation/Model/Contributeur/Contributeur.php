@@ -4,6 +4,7 @@ namespace Presentation\Model\Contributeur;
 
 class Contributeur
 {
+	public $id;
 	public $email_personne;
 	public $nom_personne;
 	public $prenom_personne;
@@ -15,6 +16,7 @@ class Contributeur
 
 	public function exchangeArray($data)
 	{
+		$this->id     	= (!empty($data['id'])) ? $data['id'] : null;
 		$this->email_personne     	= (!empty($data['email_personne'])) ? $data['email_personne'] : null;
 		$this->nom_personne 		= (!empty($data['nom_personne'])) ? $data['nom_personne'] : null;
 		$this->prenom_personne  	= (!empty($data['prenom_personne'])) ? $data['prenom_personne'] : null;

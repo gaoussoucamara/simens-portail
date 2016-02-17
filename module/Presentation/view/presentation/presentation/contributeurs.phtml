@@ -1,14 +1,110 @@
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/fancybox/source/jquery.fancybox.js');?>
+<?php echo $this->headLink()->appendStylesheet($this->basePath().'/js/fancybox/source/jquery.fancybox.css');?>
+
 <style>
-#contributeurs,#p3 a{ color: #49afcd; }
+#contributeurs, #p3 a{ color: #49afcd; }
+.attachmentStyle img{ height: 90%;  width: 90%; }
+.ligneStyle{ margin-bottom: 15px; }
+.attachmentStyle img
+{
+	border-top-width: 4px;
+	border-right-width: 4px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-bottom-width: 4px;
+	border-left-width: 4px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: white;
+	border-right-color: white;
+	border-bottom-color: white;
+	border-left-color: white;
+	border-radius: 6px;
+	box-shadow: 0pt 0pt 8px rgba(0, 0, 0, 0.5);
+}
+
+.placeImage div
+{
+	border-top-width: 4px;
+	border-right-width: 4px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-bottom-width: 4px;
+	border-left-width: 4px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: white;
+	border-right-color: white;
+	border-bottom-color: white;
+	border-left-color: white;
+	border-radius: 6px;
+	box-shadow: 0pt 0pt 12px rgba(0, 0, 0, 0.4);
+	height: auto;  
+	width: 87%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+	margin-left: 3px;
+	text-align: center;
+}
+
 </style>
+
+
 <div class="container inner">
 	<h1><?php echo $this->subheadtitle?></h1>
 	<br>
-	<?php foreach ($this->contributeurs as $contributeur) : ?>
-	<article class="post">
-		<a class="title" href="<?php echo $this->escapeHtml($contributeur->site_web_personne); ?>"><h2> <?php echo $this->escapeHtml($contributeur->prenom_personne) . ' ' . $this->escapeHtml($contributeur->nom_personne) . ' (' . $this->escapeHtml($contributeur->statut_personne) . ')';?> </h2></a>
-		<a class="attachment" href=<?php echo $this->basePath() . "/img/personne/" . $this->escapeHtml($contributeur->image_personne);?>><img <?php echo "src=\"" . $this->basePath() . "/img/personne/" . $this->escapeHtml($contributeur->image_personne) . "\""; ?> alt="Image manquante"></a>
-	</article>
-	<hr>
-	<?php endforeach; ?>
+	
+	<?php $contributeurs = $this->contributeurs; ?>
+	
+	<table style="width: 100%; height: 150px;">
+	
+	   <?php for ($i = 0 ; $i < count($contributeurs) ; $i++) { ?>
+        <tr  class="ligneStyle" style="width: 100%; height: 150px;">
+	      <?php for ($j = 0 ; $j < count($contributeurs[$i]) ; $j++) { ?>
+
+	      
+	           <td class="placeImage" style="width: 25%; height: 150px;">
+	              <a class="attachmentStyle " id="<?php echo $contributeurs[$i][$j]->id; ?>"  href="<?php echo $this->basePath() . "/img/personne/" . $this->escapeHtml($contributeurs[$i][$j]->image_personne);?>" > <img <?php echo "src=\"" . $this->basePath() . "/img/personne/" . $this->escapeHtml($contributeurs[$i][$j]->image_personne) . "\""; ?> alt="Image manquante"></a>
+	              <div style="color: red;"><span> <?php echo $this->escapeHtml($contributeurs[$i][$j]->prenom_personne) . ' ' . $this->escapeHtml($contributeurs[$i][$j]->nom_personne) . ' (' . $this->escapeHtml($contributeurs[$i][$j]->statut_personne) . ')'; ?> </span></div>
+	           </td>
+	   
+	        
+	        <script>
+              /*** zoom Image ***/
+              $("<?php echo "#".$contributeurs[$i][$j]->id; ?>").fancybox({
+	            openEffect	: 'elastic',
+	            closeEffect	: 'elastic',
+
+	            helpers : {
+		          title : {
+			      type : 'inside'
+	              }
+	            },
+	            afterLoad : function() {
+			      this.title = "<?php echo $contributeurs[$i][$j]->prenom_personne . ' ' . $contributeurs[$i][$j]->nom_personne . ' (' . $contributeurs[$i][$j]->statut_personne . ')'; ?>";
+	            }
+	   
+              });
+            </script>
+	        
+	        
+	      <?php } ?>
+	    </tr>
+	   <?php } ?>
+	   
+	</table>
+	
 </div>

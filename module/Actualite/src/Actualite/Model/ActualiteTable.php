@@ -227,12 +227,14 @@ class ActualiteTable
 						if($role == 'moderateur'){
 							
 							if($aRow[ 'Actualite_publie'] == 1){
-								$html .="<a id='depublier-".$aRow[ $aColumns[$i] ]."' href='javascript:depublier(".$aRow[ $aColumns[$i] ].")' >";
-								$html .="<img style='margin-right: 17%; margin-left: 5%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/stop_16.png' titl='depublier'></a>";
-							
+								$html .="<infoBulleVue> <a id='modifier-".$aRow[ $aColumns[$i] ]."' href='javascript:modifier(".$aRow[ $aColumns[$i] ].")' >";
+								$html .="<img style='margin-right: 8%; margin-left: 5%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/Draft_16.png' titl='modifier'></a> </infoBulleVue>";
+								
 								$html .="<img style='margin-right: 0%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/tick_16.png' >";
 							
-								//$html .="<span style='color: green; font-style: italic;'> publi&eacute; </span>";
+								$html .="<a id='depublier-".$aRow[ $aColumns[$i] ]."' href='javascript:depublier(".$aRow[ $aColumns[$i] ].")' >";
+								$html .="<img style='margin-top: 5px; margin-right: 17%; margin-left: 5%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/stop_16.png' titl='depublier'></a>";
+									
 							} else {
 								$html .="<infoBulleVue> <a id='modifier-".$aRow[ $aColumns[$i] ]."' href='javascript:modifier(".$aRow[ $aColumns[$i] ].")' >";
 								$html .="<img style='margin-right: 8%; margin-left: 5%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/Draft_16.png' titl='modifier'></a> </infoBulleVue>";

@@ -233,7 +233,9 @@ class ArticleTable
 										
 									if($aRow[ 'Article_publie'] == 1){
 										$html .="<infoBulleVue> ";
-										$html .="<img style='margin-right: 8%; margin-left: 5%; opacity: 0.1; color: white;' src='".$tabURI[0]."public/img/article/Draft_16.png' ></infoBulleVue>";
+										//$html .="<img style='margin-right: 8%; margin-left: 5%; opacity: 0.1; color: white;' src='".$tabURI[0]."public/img/article/Draft_16.png' ></infoBulleVue>";
+										$html .="<infoBulleVue> <a id='modifier-".$aRow[ $aColumns[$i] ]."' href='javascript:modifier(".$aRow[ $aColumns[$i] ].")' >";
+										$html .="<img style='margin-right: 8%; margin-left: 5%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/Draft_16.png' titl='modifier'></a> </infoBulleVue>";
 										
 										$html .="<img style='margin-right: 0%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/tick_16.png' >";
 										
@@ -470,13 +472,14 @@ class ArticleTable
 		
 						if($role == 'moderateur'){
 							if($aRow[ 'Article_publie'] == 1){
-								$html .="<infoBulleVue> <a id='depublier-".$aRow[ $aColumns[$i] ]."' href='javascript:depublier(".$aRow[ $aColumns[$i] ].")' >";
-								$html .="<img style='margin-left: 5%; margin-top: 5%; margin-right: 12%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/stop_16.png' titl='depublie'></a> </infoBulleVue>";
-										
+								$html .="<infoBulleVue> <a id='modifier-".$aRow[ $aColumns[$i] ]."' href='javascript:modifier(".$aRow[ $aColumns[$i] ].")' >";
+								$html .="<img style='margin-right: 10%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/Draft_16.png' titl='modifier'></a> </infoBulleVue>";
+								
 								$html .="<infoBulleVue>";
 								$html .="<img style='margin-right: 0%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/tick_16.png' > </infoBulleVue>";
 
-								//$html .="<a style='font-style: italic; color: green; font-size: 12px;'> publier </a> ";
+								$html .="<infoBulleVue> <a id='depublier-".$aRow[ $aColumns[$i] ]."' href='javascript:depublier(".$aRow[ $aColumns[$i] ].")' >";
+								$html .="<img style='margin-left: 5%; margin-top: 5%; margin-right: 12%; opacity: 0.8; color: white;' src='".$tabURI[0]."public/img/article/stop_16.png' titl='depublie'></a> </infoBulleVue>";
 								
 							} else {
 								$html .="<infoBulleVue> <a id='modifier-".$aRow[ $aColumns[$i] ]."' href='javascript:modifier(".$aRow[ $aColumns[$i] ].")' >";

@@ -1,8 +1,7 @@
 <style>
 #a1 a{ color: #49afcd; }
-#formulaire{
-	visibility: hidden;
-}
+#formulaire{ visibility: hidden; }
+#RetourListesArticles{ margin-top: -15px; margin-bottom: 5px; cursor: pointer;}
 </style>
 
 
@@ -22,7 +21,7 @@
 $form = $this->form;
 echo $this->form()->openTag($form); 
 ?>
-
+<a href="javascript:retourVersLaListe();"><img id="RetourListesArticles" src="<?php echo $this->basePath().'/img/article/left_16.png'; ?>" ></a>
 <div  style="box-shadow: 0 0 4px rgba(0, 0, 0, 5); background: #abbfff; width: 100%; border-top:1px solid #abbfff; border-left:1px solid #abbfff; border-right:1px solid #abbfff; height: 30px; ">
    <div  style="padding: 10px; text-align:center; font-weight: bold; font-size: 13px; color: black;">
     Modification de l'article 
@@ -119,6 +118,17 @@ echo $this->form()->openTag($form);
 		    event.preventDefault();
 		  }
 	});
+
+
+	function retourVersLaListe() {
+        <?php if($this->layout()->user['role_personne'] == "redacteur"){ ?>
+		   vart=tabUrl[0]+'public/maladie/liste-article';
+           $(location).attr("href",vart);
+		<?php } else if($this->layout()->user['role_personne'] == "moderateur") { ?>
+		   vart=tabUrl[0]+'public/maladie/liste-article-soumis';
+           $(location).attr("href",vart);
+        <?php } ?>
+	}
 </script>
 
 
