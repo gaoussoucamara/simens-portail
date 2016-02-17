@@ -1,0 +1,21 @@
+<style>
+#partenaires,#p4 a{ color: #49afcd; }
+</style>
+<div class="container inner">
+	<h1><?php echo $this->subheadtitle?></h1>
+	<br>
+	<?php foreach ($partenaires as $partenaire) : ?>
+	<article class="post">
+		<a class="title" href="<?php echo $this->escapeHtml($partenaire->site_web_institution) . '><h2>' . $this->escapeHtml($partenaire->nom_institution) . ' (' . $this->escapeHtml($partenaire->code_institution) . ')'; ?>"> </h2></a>
+		<a class="attachment" href=<?php echo $this->basePath() . "/img/institution/" . $this->escapeHtml($partenaire->logo_institution);?>><img <?php echo "src=\"" . $this->basePath() . "/img/institution/" . $this->escapeHtml($partenaire->logo_institution) . "\""; ?> alt="Image manquante"></a>
+	<!-- 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod -->
+	<!-- 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, -->
+	<!-- 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo -->
+	<!-- 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse -->
+	<!-- 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non -->
+	<!-- 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+	<!-- 	<a class="button" href="">Plus de détails</a> -->
+	</article>
+	<hr>
+	<?php endforeach; ?>
+</div>	

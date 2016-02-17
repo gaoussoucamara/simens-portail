@@ -1,0 +1,194 @@
+<?php echo $this->doctype(); ?>
+
+<html>
+<head>
+<meta charset="utf-8">
+        <?php echo $this->headTitle('SIMENS '.'Système d\'Information Médical National pour Sénégal')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/simens_tabicon.ico'))
+         				->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/flexslider.css')
+         				->prependStylesheet($this->basePath() . '/fancybox/jquery.fancybox-1.3.4.css')
+                        ->prependStylesheet($this->basePath() . '/css/resp.css')
+                        ->prependStylesheet($this->basePath() . '/css/reset.css')
+        ?>
+        
+	<!--  <link rel="stylesheet" type="text/css" href="colorfa44.css?color=23dbdb" class="color"> -->
+
+<!-- Scripts -->
+        <?php echo $this->headScript()
+        	->prependFile($this->basePath() . '/js/script.js')
+            ->prependFile($this->basePath() . '/fancybox/jquery.fancybox-1.3.4.js')
+        	->prependFile($this->basePath() . '/js/jquery.flexslider.js')
+        	->prependFile($this->basePath() . '/js/retina.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.isotope.min.js')
+            ->prependFile($this->basePath() . '/js/portfolio.js')
+        ; ?>
+
+
+</head>
+<body>
+	<div id="wrap">
+	
+	<!-- ********************************************************************************************************* -->
+	<!-- ********************************************************************************************************* -->
+	<!-- ********************************************************************************************************* -->
+	
+			<header>
+			<div id="header-bar">
+			</div>
+			
+			<div class="inner relative">
+				<a <?php echo "href=" . $this->basePath();?> ><img <?php echo "src=\"" . $this->basePath() . "/img/logo.png\"" ?> alt="simens"></a> <a
+					id="menu-toggle" class="button dark" href="#"><i
+					class="icon-reorder"></i></a>
+				<nav id="navigation">
+					<form id="search">
+						<input type="text" name="s" spellcheck="false">
+					</form>
+					<ul id="main-menu">
+						<li class=""><a href="<?php echo $this->basePath();?>" >Actualités</a></li>
+						<li class="parent"><a href="<?php echo $this->basePath().'/maladie';?>" >Maladies</a>
+							<ul class="sub-menu">
+							    <?php if($this->layout()->user['role_personne'] == 'moderateur' ) {?>
+								  <li id="menu_a1"><a href="<?php echo $this->basePath().'/maladie/liste-article-soumis';?>">
+								      <img style="margin-right: 6px; float: left;" src="<?php echo $this->basePath().'/img/article/42_.png'; ?>">
+								      Liste des articles
+								    </a>
+								  </li>
+								<?php } ?>
+								
+								
+								<?php if($this->layout()->user['role_personne'] == 'redacteur' ) {?>
+								  <li id="menu_a2"><a href="<?php echo $this->basePath().'/maladie/liste-article';?>">
+								      <img style="margin-right: 6px; float: left;" src="<?php echo $this->basePath().'/img/article/42_.png'; ?>">
+								      Liste des articles
+								    </a>
+								  </li>
+								  <li id="menu_a3"><a href="<?php echo $this->basePath().'/maladie/redaction-article';?>">
+								      <img style="margin-right: 6px; float: left;" src="<?php echo $this->basePath().'/img/article/44_.png'; ?>">
+								      Nouvel article
+								    </a>
+								  </li>
+								<?php } ?>
+								
+								
+								<li><a href="">Type 1</a></li>
+								<li><a class="parent" href="#">Type 2</a>
+									<ul class="sub-menu">
+										<li><a href="">Sous Type 1</a></li>
+										<li><a href="">Sous Type 2</a></li>
+										<li><a href="">Sous Type 3</a></li>
+									</ul></li>
+							</ul>
+						</li>
+						<li class="parent"><a <?php echo "href=\"" . $this->basePath() . "/bonnepratique\""?>>Bonnes Pratiques</a>
+							<ul class="sub-menu">
+								<li><a href="">Alimentaires</a></li>
+								<li><a href="">Hygiénique</a></li>
+								<li><a href="">Physiques</a></li>
+								<li><a href="">Diverses</a></li>
+							</ul></li>
+						<li class="menu-item"><a href="#">Forum de discussions</a>
+						
+						<li class="parent"><a <?php echo "href=\"" . $this->basePath() . "/presentation/resume\""?>>Le projet SIMENS</a>
+							 <ul class="sub-menu">
+								<li id="p1"><a <?php echo "href=\"" . $this->basePath() . "/presentation/resume\"" ?>>Résumé</a></li>
+								<li id="p2"><a <?php echo "href=\"" . $this->basePath() . "/presentation/financement\""?>>Financement</a></li>
+								<li id="p3"><a <?php echo "href=\"" . $this->basePath() . "/presentation/contributeurs\""?>>Contributeurs</a></li>
+								<li id="p4"><a <?php echo "href=\"" . $this->basePath() . "/presentation/partenaires\""?>>Partenaires</a>
+								<li id="p5"><a <?php echo "href=\"" . $this->basePath() . "/presentation/contact\""?>>Contact</a></li>
+							 </ul>
+						</li>
+					</ul>
+				</nav>
+				<div class="clear"></div>
+			</div>
+		</header>
+		
+		
+		<!-- ************ GESTION DES IMAGES DEFILANTES *********** -->
+		<!-- ************ GESTION DES IMAGES DEFILANTES *********** -->
+		<!-- ************ GESTION DES IMAGES DEFILANTES *********** -->
+		<!-- ************ GESTION DES IMAGES DEFILANTES *********** -->
+		<?php $imagesDefilantes = $this->layout()->imagesDefilantes; ?>
+		
+		<div class="EmplacementLayoutImagesDefilantes">
+		  
+		  <div id="slider" class="flexslider">
+		    <ul class="slides">
+				
+				<?php for($i = 0 ; $i < count($imagesDefilantes) ; $i++) { ?>
+				   <li><img  src="<?php echo $this->basePath() . '/img/blog/'.$imagesDefilantes[$i]['image'].'.jpg'; ?>" />
+					 <div class="inner">
+					   <h2 class="flex-caption" style="bottom: 60px;"> <?php echo $imagesDefilantes[$i]['titre_1']; ?> </h2>
+					   <h3 class="flex-caption" style="bottom: 20px;"> <?php echo $imagesDefilantes[$i]['titre_2']; ?> </h3>
+					 </div>
+				   </li>
+				<?php } ?>
+				
+			</ul>
+		  </div>
+		  
+		</div>
+		
+		<script type="text/javascript">
+		   $(window).load(function(){
+				$('.flexslider').flexslider({
+					controlNav: false,
+					animation: "slide",
+					start: function(slider){
+    					$('body').removeClass('loading');
+					}	
+				});
+		   });
+		</script>
+		
+		<!-- ************ FIN FIN GESTION DES IMAGES DEFILANTES *********** -->
+		<!-- ************ FIN FIN GESTION DES IMAGES DEFILANTES *********** -->
+		<!-- ************ FIN FIN GESTION DES IMAGES DEFILANTES *********** -->
+		
+		
+	<!-- ********************************************************************************************************* -->
+	<!-- ********************************************************************************************************* -->
+	<!-- ********************************************************************************************************* -->
+	
+		
+		<?php echo $this->outilsutilisateurs; ?>
+		<div id="content" class="right-sidebar">
+			<div class="inner">
+				<div id="main" role="main">
+					<?php echo $this->content; ?>
+				</div>
+					<?php echo $this->blogrightsidebar?>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<?php echo $this->blogarticlepagination?>
+		<footer class="dark">
+			<?php echo $this->blogfooter?>
+			<div id="footer-bar">
+				<div class="inner container">
+					<div class="one_half">
+						<p>&copy; 2011 - <?php echo date('Y') ?> - Projet SIMENS/UFR SAT/UGB - Tous les droits réservés.</p>
+					</div>
+					<div class="one_half">
+						<ul>
+							<li><a href="#">Terms</a></li>
+							<li><a href="#">Privacy</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

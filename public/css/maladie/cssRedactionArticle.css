@@ -1,0 +1,71 @@
+
+#nomMaj
+{
+	text-transform : uppercase;
+}
+
+#photo 
+{
+	width: 120px;
+	border-top-width: 4px;
+	border-right-width: 4px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-bottom-width: 4px;
+	border-left-width: 4px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: white;
+	border-right-color: white;
+	border-bottom-color: white;
+	border-left-color: white;
+	border-radius: 6px;
+	box-shadow: 0pt 0pt 12px rgba(0, 0, 0, 0.3);
+}
+
+canvas {
+	position: relative;
+	background-color: #ffffff;
+	background-image: none;
+	background-repeat: repeat;
+	background-attachment: scroll;
+	background-position: 0% 0%;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-size: auto auto;             
+	box-shadow: #dddddd;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	border-radius: 6px;
+   
+	height: 98px;
+	width: 120px;
+}
+
+/*****LA PHOTO*******/
+.photo_article {
+	position:relative;
+	height:98px;
+	overflow:hidden;
+	background: url("../../img/article/Photo2.png") no-repeat -5px;
+}
+  
+
+.photo_article input {
+	position:absolute;
+	right:0;
+	top:0;
+	opacity:0;
+	-moz-opacity:0;
+	filter:alpha(opacity=0);
+	cursor:pointer;
+	height:98px;
+}

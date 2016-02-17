@@ -1,0 +1,197 @@
+<style>
+#a1 a{ color: #49afcd; }
+</style>
+
+<!-- Trois derniers articles -->
+<!-- Trois derniers articles -->
+<div class="container innerAccueil">
+			
+  <?php for ($i = 0 ; $i < 3 && $i < count($this->listeActualites) ; $i++){ ?> <!-- Pour n'afficher uniquement que les trois derniers articles -->
+
+        <?php if($this->listeActualites) { ?>
+        
+          <div class="one_third2">
+				
+			 <div class="column" style='height: 145px; overflow: hidden;'>
+				<h2><?php echo $this->listeActualites[$i]['titre']; ?></h2>
+				<p><a style="cursor:pointer; color:gray;" href="<?php echo $this->basePath() . '/actualite/details-actualite/val/'.$this->listeActualites[$i]['id']; ?>" >
+				     <?php if ($this->listeActualites[$i]['image_actu']) { ?>
+				       <span style="float: left;"> 
+				         <img style="height: 40px; width: 45px; margin-right: 5px; border-radius: 2px;" src="<?php echo $this->basePath() . '/img/images_actualites/'.$this->listeActualites[$i]['image_actu']; ?>" >
+				       </span>
+				     <?php } ?>
+				     <?php echo $this->listeActualites[$i]['description']; ?>
+				   </a>
+				</p>
+			 </div>
+		  </div>
+		  
+		<?php } ?>
+  
+  <?php } ?>
+  
+  
+  <?php /*  for ($i = 0 ; $i < 3 && $i < count($this->listeArticle) ; $i++){ ?> <!-- Pour n'afficher uniquement que les trois derniers articles -->
+
+        <?php if($this->listeArticle) { ?>
+        
+          <div class="one_third2">
+				
+			 <div class="column" style='height: 145px; overflow: hidden;'>
+				<h2><?php echo $this->listeArticle[$i]['titre_article']; ?></h2>
+				<p><a style="cursor:pointer; color:gray;" href="<?php echo $this->basePath() . '/actualite/details-article/val/'.$this->listeArticle[$i]['code_article']; ?>" >
+				     <?php if ($this->listeArticle[$i]['image_article']) { ?>
+				       <span style="float: left;"> 
+				         <img style="height: 40px; width: 45px; margin-right: 5px; border-radius: 2px;" src="<?php echo $this->basePath() . '/img/images_articles/'.$this->listeArticle[$i]['image_article']; ?>" alt="Maladies">
+				       </span>
+				     <?php } ?>
+				     <?php echo $this->listeArticle[$i]['description_article']; ?>
+				   </a>
+				</p>
+			 </div>
+		  </div>
+		  
+		<?php } ?>
+  
+  <?php } */ ?>
+
+</div>
+
+<!-- Image actualitÈ -->
+<!-- Image actualitÈ -->
+<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="js/portfolio.js"></script>
+	
+<div class="separated">
+	<div class="inner">
+		<ul class="filter">
+ 		   <li><a data-filter="cat2">Derni√®res actualit√©s</a></li>
+		</ul>
+		<ul class="grid">
+					
+					
+	    <?php for ($i = 0 ; $i < 4 && $i < count($this->listeArticle) ; $i++){ ?> <!-- Pour n'afficher uniquement que les quatres dernieres actualites -->
+
+        <?php if($this->listeArticle) { ?>
+        
+            <li data-cat="cat2">
+			   <a href="<?php echo $this->basePath() . '/actualite/details-article/val/'.$this->listeArticle[$i]['code_article']; ?>">
+			      <?php if ($this->listeArticle[$i]['image_article']) { ?>
+				    <img style="width: 310px; height: 140px;" src="<?php echo $this->basePath() . '/img/images_articles/'.$this->listeArticle[$i]['image_article']; ?>" >
+				  <?php } else { ?>
+				    <img style="width: 310px; height: 140px;" src="<?php echo $this->basePath() . '/img/images_actualites/maladies.jpg'; ?>" >
+				  <?php } ?>
+			   </a>
+			   <a class="content" href="<?php echo $this->basePath() . '/actualite/details-article/val/'.$this->listeArticle[$i]['code_article']; ?>">
+				  <h3><?php echo $this->listeArticle[$i]['titre_article']; ?></h3>
+			   </a>
+		    </li>
+		  
+		<?php } ?>
+  
+        <?php } ?>
+					
+					
+		</ul>
+		<!-- a class="button more" href="#">Voir toutes les actualit√©s</a-->
+		
+	</div>
+	
+</div>
+
+
+<!-- Contenu des articles -->
+<!-- Contenu des articles -->
+<div class="inner">
+	<div class="container">
+		<div class="two_third">
+			<h2></h2>
+			<div class="accordion">
+				<a class="switch opened" href="#"><div></div>Articles populaires</a>
+				<div class="content">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+						<p>	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+						<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat.</p>
+				</div>
+					<a class="switch" href="#"><div></div>Astuces etc</a>
+				<div class="content">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+						<p>	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+						<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat.</p>
+				</div>
+					<a class="switch" href="#"><div></div>Encore un autre accordeon</a>
+				<div class="content">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<p>	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+					<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.</p>
+				</div>
+			</div>
+		</div>
+		<div class="one_third">
+			<h2></h2>
+			<div class="testimonial">
+				<img src="img/pub.jpg" alt="pppp">
+			</div>
+		</div>
+	</div>
+	<div class="space"></div>
+	<div class="highlight"></div>
+</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- div class="inner">
+				<div class="highlight"></div>
+				<br>
+				<div class="container">
+					<div class="two_third">
+						<h2></h2>
+						<div class="accordion">
+							<a class="switch opened" href="#"><div></div>Articles populaires</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod</p>
+								<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim
+									ad minim veniam,</p>
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+									ea commodo consequat.</p>
+							</div>
+							<a class="switch" href="#"><div></div>Astuces etc</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod</p>
+								<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim
+									ad minim veniam,</p>
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+									ea commodo consequat.</p>
+							</div>
+							<a class="switch" href="#"><div></div>Encore un autre accordeon</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod</p>
+								<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim
+									ad minim veniam,</p>
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+									ea commodo consequat.</p>
+							</div>
+						</div>
+					</div>
+					<div class="one_third">
+						<?php //echo $this->pub?>
+					</div>
+				</div>
+				<div class="highlight"></div>
+			</div-->

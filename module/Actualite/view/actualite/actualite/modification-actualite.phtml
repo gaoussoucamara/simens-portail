@@ -1,0 +1,125 @@
+<style>
+#a1 a{ color: #49afcd; }
+#formulaire{
+	visibility: hidden;
+}
+</style>
+
+
+<?php echo $this->headScript()->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js'); ?>
+<?php echo $this->headScript()->prependFile($this->basePath() . '/js/ckeditor/samples/js/sample.js'); ?>
+<?php  echo $this->headLink()->prependStylesheet($this->basePath().'/css/style.css');?>
+<?php  echo $this->headLink()->prependStylesheet($this->basePath().'/css/actualite/cssModifierActualite.css');?>
+<?php echo $this->headScript()->prependFile($this->basePath() . '/js/actualite/jsModifierActualite.js'); ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/w2ui/w2ui-1.4.3.min.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/w2ui/w2ui-1.4.3.min.js'); ?>
+
+
+<form id="formulaire" method="post" action="<?php echo $this->url('actualite', array('action'=>'enregistrer-modification-actualite')); ?>" >
+
+<?php 
+$form = $this->form;
+echo $this->form()->openTag($form); 
+?>
+
+<div  style="box-shadow: 0 0 4px rgba(0, 0, 0, 5); background: #abbfff; width: 100%; border-top:1px solid #abbfff; border-left:1px solid #abbfff; border-right:1px solid #abbfff; height: 30px; ">
+   <div  style="padding: 10px; text-align:center; font-weight: bold; font-size: 13px; color: black;">
+    Modification de l'article 
+   </div>
+</div>
+<div id="touches"  style="box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); background: #f9f9f9; width: 100%; border-left:1px solid #cccccc; border-top:1px solid #cccccc; border-right:1px solid #cccccc;">
+    <div id="form_design" style="padding-left: 10px; padding-top: 10px;" >
+        <div style="float: right; margin-right: 7%; width: 30%; margin-top: 10px;" >
+            <img style="width: 80%; height: 80%;" src="<?php echo $this->basePath() . '/img/article/logo_article.png' ?>" >
+            
+            <div style="float: right; margin-right: 7%; width: 80%; height: 80%; margin-top: 125px;" >
+                <div class="photo_article" id='photo'>
+                   <!-- RECUPERER L'IMAGE -->
+			       <input type='file' name="fichier" />
+		        </div>
+		        <!-- FICHIER TAMPON POUR RECUPERER L'IMAGE DANS LE CONTROLLER -->
+		        <input type='hidden' id="fichier_tmp" name="fichier_tmp" />
+			       
+		        <div class="supprimer_photo" id="supprimer_photo" style="width: 120px;"> </div>
+            </div>
+        </div>
+        
+            <?php echo $this->formhidden($form->get('id')); ?>
+        
+        <div>
+            <?php echo $this->formRow($form->get('titre')); ?>
+        </div>
+        
+        <div>
+            <?php echo $this->formRow($form->get('source')); ?>
+        </div>
+        
+        <div>
+            <?php echo $this->formRow($form->get('source_web')); ?>
+        </div>
+    
+        <div>
+            <?php echo $this->formRow($form->get('categorie')); ?>
+        </div>
+    
+        <div>
+            <?php echo $this->formRow($form->get('description')); ?>
+        </div>
+    
+        <label>Contenu de l'article:</label>
+        <div id="editor">
+            <!-- ZONE DE TEXTE -->
+        </div>
+        <?php echo $this->formRow($form->get('article')); ?>
+        
+    </div>
+
+<div style='border-bottom:1px solid #49afcd; height: 35px; background: #f9f9f9; width: 100%; text-align:left; padding-top: 0px; padding-bottom: 10px; font-size: 14px; color: #49afcd; font-weight: bold;'>
+  <input class="btnNJL" id="readOnlyOn" onclick="toggleReadOnly();" type="button" value="Mode lecture seul" style="display:none; margin-left: 10px; cursor: pointer;">
+  <input class="btnNJL" id="readOnlyOff" onclick="toggleReadOnly( false );" type="button" value="Mode &eacute;ditable" style="display:none; margin-left: 10px; cursor: pointer;">
+</div>
+<div style='border-bottom:1px solid #cccccc; height: 50px; width:100%; padding-top:10px; text-align:center; background: #f1f1f1;'>
+  <button class="btnNJL" style="cursor: pointer;" id="AnnulerModifRedaction"> Annuler </button>
+  <button class="btnNJL" style="cursor: pointer;" onclick="GetContents();"> Enregistrer </button>
+</div>
+
+</div>
+			
+</form>
+
+<script>
+	initSample();
+	$(window).load(function () {
+		$('#formulaire').fadeIn().css({'visibility':'visible'});
+		InsertHTML();
+
+		//revoir les liens pour les photos
+        <?php if($this->image) { ?>
+		initFonctPhoto('<?php echo $this->image; ?>');
+		<?php } ?>
+	});
+
+	var base_url = window.location.toString();
+	var tabUrl = base_url.split("public");
+	$("#AnnulerModifRedaction").click(function() {
+		
+		<?php if($this->layout()->user['role_personne'] == "moderateur") { ?>
+		   vart=tabUrl[0]+'public/actualite/liste-actualite';
+           $(location).attr("href",vart);
+		<?php } ?>
+
+        return false;
+	});
+
+
+	$('#touches input').keypress(function(event) {
+		  if (event.keyCode == 13) {
+		    // Appui sur la touche Entrée. On fait rien
+		    event.preventDefault();
+		  }
+	});
+</script>
+
+
+<?php echo $this->headScript()->prependFile($this->basePath() . '/js/ckeditor/api.js'); ?>

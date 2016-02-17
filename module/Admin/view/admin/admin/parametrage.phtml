@@ -1,0 +1,1009 @@
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/w2ui/w2ui-1.4.3.min.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/w2ui/w2ui-1.4.3.min.js'); ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/jqwidgets/jqwidgets/styles/jqx.base.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jqwidgets/jqwidgets/jqxcore.js'); ?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jqwidgets/jqwidgets/jqxbuttons.js'); ?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jqwidgets/jqwidgets/jqxscrollbar.js'); ?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jqwidgets/jqwidgets/jqxsplitter.js'); ?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jqwidgets/jqwidgets/jqxlistbox.js'); ?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jqwidgets/jqwidgets/jqxdata.js'); ?>
+
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/parametrage/scriptParametrage.js'); ?>
+
+<style>
+#photo 
+{
+	width: 170px;
+	border-top-width: 4px;
+	border-right-width: 4px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-bottom-width: 4px;
+	border-left-width: 4px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: white;
+	border-right-color: white;
+	border-bottom-color: white;
+	border-left-color: white;
+	border-radius: 6px;
+	box-shadow: 0pt 0pt 12px rgba(0, 0, 0, 0.3);
+	float: left;
+}
+
+#photo_confirmer_suppression, #photo_modification_donnees
+{
+	width: 390px;
+	height: 120px;
+	border-top-width: 4px;
+	border-right-width: 4px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-bottom-width: 4px;
+	border-left-width: 4px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: white;
+	border-right-color: white;
+	border-bottom-color: white;
+	border-left-color: white;
+	border-radius: 6px;
+	box-shadow: 0pt 0pt 12px rgba(0, 0, 0, 0.3);
+	float: left;
+}
+
+#photo_confirmer_suppression img, #photo_modification_donnees img
+{
+	height: 100%;
+	width: 100%;
+}
+
+canvas {
+	position: relative;
+	background-color: #ffffff;
+	background-image: none;
+	background-repeat: repeat;
+	background-attachment: scroll;
+	background-position: 0% 0%;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-size: auto auto;             
+	box-shadow: #dddddd;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	border-radius: 6px;
+}
+
+.photo_article canvas {
+	height: 198px;
+	width: 170px;
+}
+
+.photo_image_def canvas {
+	height:120px;
+	width: 390px;
+}
+/*****LA PHOTO*******/
+.photo_article {
+	position:relative;
+	height:198px;
+	overflow:hidden;
+	background: url("/www-simens-sn/public/img/article/Photo2.png") no-repeat 15px;
+}
+  
+
+.photo_article input {
+	position:absolute;
+	right:0;
+	top:0;
+	opacity:0;
+	-moz-opacity:0;
+	filter:alpha(opacity=0);
+	cursor:pointer;
+	height:198px;
+}
+
+
+#photo_def 
+{
+	width: 390px;
+	border-top-width: 4px;
+	border-right-width: 4px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-bottom-width: 4px;
+	border-left-width: 4px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: white;
+	border-right-color: white;
+	border-bottom-color: white;
+	border-left-color: white;
+	border-radius: 6px;
+	box-shadow: 0pt 0pt 12px rgba(0, 0, 0, 0.3);
+	float: left;
+}
+
+/*****LA PHOTO IMAGES DEFILANTES *******/
+.photo_image_def {
+	position:relative;
+	height:120px;
+	width: 390px;
+	overflow:hidden;
+	background: url("/www-simens-sn/public/img/article/Photo2.png") no-repeat 135px;
+}
+  
+
+.photo_image_def input {
+	position:absolute;
+	right:0;
+	top:0;
+	opacity:0;
+	-moz-opacity:0;
+	filter:alpha(opacity=0);
+	cursor:pointer;
+	height:120px;
+	width: 390px;
+}
+
+/***-----_-----_----_----_----_----_----_----_----_----_-----_-----_-----_-----_-----_-----_-----_***/
+/***-----_-----_----_----_----_----_----_----_----_----_-----_-----_-----_-----_-----_-----_-----_***/
+#form_design label, #form_design .comment-form-email label, #form_design .comment-form-url label, #form_design .comment-form-comment label, #tab_modification_donnees label , .contenu_niveau_2 label
+
+{/* le label*/
+line-height: 1.2em;
+
+background-color: #eeeeee;
+
+background-image: none;
+
+background-repeat: repeat;
+
+background-attachment: scroll;
+
+background-position: 0% 0%;
+
+background-clip: border-box;
+
+background-origin: padding-box;
+
+border-top-right-radius: 15px;
+
+background-size: auto auto;
+
+border: 1px solid #cccccc;
+box-shadow: 1px 2px 2px rgba(204, 204, 204, 0.3);
+/* box-shadow: 0 0 2px rgba(0, 0, 0, 0.2); */
+
+color: #555555;
+
+display: inline-block;
+
+font-size: 13px;
+
+left: 0px; /*déplacer le label*/
+
+min-width: 60px;
+
+padding-top: 4px;
+
+padding-right: 10px;
+
+padding-bottom: 5px;
+
+padding-left: 10px;
+
+position: relative;
+
+top: 5px;
+
+z-index: 1;
+
+}
+
+#form_design select
+{
+	font-family: time new romans;
+	
+	border-left-color: #cccccc;
+	
+	border-right-color: #cccccc;
+	
+	margin-right: 25px;
+	
+	margin-bottom: 15px;
+}
+
+#form_design input[type="text"], #form_design textarea
+{
+    font-family: Arial;
+	
+    border:1px solid #ccc;
+	
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+
+    padding-right: 10px;
+
+    padding-bottom: 5px;
+
+    margin-bottom : 15px;
+	
+	margin-top : -5px;
+
+    margin-right: 25px;
+
+    padding-left: 5px;
+
+    width: 95%; 
+
+    max-width: 95%;
+	
+	min-width: 95%;
+	
+	color: black;
+
+	font-size: 14px;
+}
+
+#tab_modification_donnees textarea, #tab_modification_donnees input[type="text"]
+{
+    font-family: Arial;
+	
+    border:1px solid #ccc;
+	
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+
+   /* le texte des champs*/
+
+    padding-right: 10px;
+
+    padding-bottom: 5px;
+
+    margin-bottom : 15px;
+	
+	margin-top : -5px;
+
+    margin-right: 25px;
+
+    padding-left: 5px; /* padding du text dans le champ*/
+
+	color: black;
+
+	font-size: 14px;
+}
+
+#champ1 textarea
+{
+	min-height: 45px;
+	max-height: 45px;
+	height: 45px; 
+}
+
+.contenu_niveau_2 input[type="text"]
+{
+	font-family: Arial;
+	
+    border:1px solid #ccc;
+	
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+
+    padding-right: 10px;
+
+    padding-bottom: 5px;
+
+    margin-bottom : 15px;
+	
+	margin-top : -5px;
+
+    margin-right: 25px;
+
+    padding-left: 5px;
+
+	color: black;
+
+	font-size: 14px;
+	
+	width: 80%;
+	
+	height: 30px;
+}
+
+.contenu_niveau_2 textarea
+{
+	font-family: Arial;
+	
+    border:1px solid #ccc;
+	
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+
+    padding-right: 10px;
+
+    padding-bottom: 5px;
+
+    margin-bottom : 15px;
+	
+	margin-top : -5px;
+
+    margin-right: 25px;
+
+    padding-left: 5px;
+
+	color: black;
+
+	font-size: 14px;
+	
+	min-height: 95px;
+	
+	max-height: 95px;
+	
+	height: 95px;
+	
+	width: 90%;
+	
+	max-width: 190px;
+	
+	min-width: 90%; 
+}
+
+#tab_modification_donnees textarea
+{
+	min-height: 110px;
+	max-height: 110px;
+	height: 110px; 
+	width: 95%; 
+    max-width: 95%;
+	min-width: 95%;
+}
+
+#description_img
+{
+	width: 100%;
+	
+}
+
+
+#titre_1, #titre_1_aj
+{
+	width: 95%;
+}
+
+#titre_2, #titre_2_aj
+{
+	width: 95%;
+}
+
+#tab_modification_donnees input[type="text"]
+{
+	height: 30px;
+}
+
+#champ2 textarea
+{
+	min-height: 90px;
+	max-height: 90px;
+	height: 90px; 
+}
+
+#form_design input[type="text"]
+{
+	height: 50px;
+}
+
+#form_design select
+{
+
+
+	display: block;
+
+	height: 30px;  /*la hauteur du champ input*/
+
+	width: 50%;/*225px;   /*la largeur du champ input*/
+
+}
+
+
+/***-----___-----___----__----_----_----_----_----_----_----_-----_-----_-----_-----_-----_-----_-----_***/
+/***-----___-----___----__----_----_----_----_----_----_----_-----_-----_-----_-----_-----_-----_-----_***/
+
+.tabParamDesign
+{
+	width: 100%;
+	max-height: 900px;
+}
+
+.tabParamDesign tr td
+{
+	width: 25%;
+	height: 150px;
+	padding-left: 5px;
+	vertical-align: top;
+}
+
+.tabParamDesign div
+{
+	width: 95%;
+	height: 150px;
+}
+
+.tabParamDesign div p
+{
+	text-align: center;
+}
+
+.tabParamDesign div p a img
+{
+	cursor:pointer;
+}
+
+.tabParamDesign div label
+{
+	text-align: center;
+	margin-top: -15px;
+	font-family: Tempus Sans ITC;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#MenuImageEnTeteDefilant a
+{
+	cursor: pointer;
+}
+
+#MenuImageEnTeteDefilant table
+{
+	margin-top: 10px;
+	width: 100%;
+}
+
+#MenuPubliciteMenu a
+{
+	cursor: pointer;
+}
+
+#MenuPubliciteMenu table
+{
+	width: 100%;
+	margin-top: 7px;
+}
+
+#MenuPubliciteMenu table tr td
+{
+	width: 100%;
+	height: 35px;
+}
+
+.niveau_1, .niveau_2, .niveau_3
+{
+	background: #eeeeee; 
+	max-height: 1000px; 
+	border: 1px solid #cccccc;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	color: black;
+	cursor: pointer;
+}
+
+.contenu_niveau_1, .contenu_niveau_2, .contenu_niveau_3
+{
+	background: #fcfcfc; 
+	border: 1px solid #cccccc;
+	border-top: 1px solid #49afcd;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	color: black;
+	margin-bottom: 15px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-left: 1px;
+	width: 98%;
+}
+
+.contenu_gestion_image
+{
+	background: #fcfcfc; 
+	border: 1px solid #cccccc;
+	border-top: 1px solid #49afcd;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	color: black;
+	margin-bottom: 15px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-left: 1px;
+	width: 98%;
+	height: auto;
+}
+
+.confirmation_suppression
+{
+	background: #fcfcfc; 
+	border: 1px solid #cccccc;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	color: black;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	margin-left: 1px;
+	width: 98%;
+	height: 130px;
+}
+
+.modification_donnees, .ajouter_image_defilante
+{
+	background: #fcfcfc; 
+	border: 1px solid #cccccc;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	color: black;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	margin-left: 1px;
+	width: 98%;
+	height: 290px;
+}
+
+.contenu_niveau_1
+{
+	height: 220px; 
+}
+
+.contenu_niveau_2
+{
+	height: 180px; 
+}
+
+.contenu_niveau_3
+{
+	height: 80px; 
+}
+
+.niveau_1 span, .niveau_2 span, .niveau_3 span
+{
+	color: black;
+	font-size: 15px;
+	font-family: time new romans;
+	margin-left: -5px;
+}
+
+.niveau_1 img, .niveau_2 img, .niveau_3 img
+{
+	position: relative;
+	float: left;
+	top: -5px; 
+	left: -5px;
+}
+
+#RetourMenu1, #RetourMenu2
+{
+	margin-top: 10px;
+}
+
+#AjoutImgMenu1_right
+{
+	margin-top: 10px;
+	margin-right: 5px;
+	float: right;
+}
+
+#face2 { visibility: hidden; }
+
+#buttonARDesign
+{
+ 	margin-top: 90px;
+}
+
+#buttonARDesignModifier 
+{
+ 	margin-top: -20px;
+}
+
+#buttonARDesign button, #buttonARDesignModifier button
+{
+ 	font-family: Arial,sans-serif; 
+ 	font-size: 1.3em; 
+ 	width: 95px; 
+ 	height: 30px; 
+	padding-top: 5px;
+	border-radius: 8px;
+}
+
+#buttonARDesign img, #buttonARDesignModifier img
+{
+    position: relative;
+	float: right;
+	top: -4px; 
+	left: 0px;
+}
+
+#buttonAnnulerModif
+{
+	position: relative;
+	float: left;
+	top: -50px; 
+	cursor: pointer;
+}
+
+#buttonARDesign button, #buttonARDesignModifier button, #buttonAnnulerModif { visibility: hidden; }
+
+
+.icone1
+{
+	margin-top: 2px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	float: left;
+	cursor: pointer;
+	width: 14px;
+	height: 15px;
+}
+
+.icone2
+{
+	margin-top: 4px;
+	margin-left: 5px;
+	float: left;
+	cursor: pointer;
+	width: 14px;
+	height: 15px;
+}
+
+.icone3
+{
+	margin-top: 6px;
+	margin-left: 5px;
+	float: left;
+	cursor: pointer;
+	width: 14px;
+	height: 15px;
+}
+
+.icone4
+{
+	margin-top: 8px;
+	margin-left: 5px;
+	float: left;
+	cursor: pointer;
+	width: 14px;
+	height: 15px;
+}
+
+.publier
+{
+	margin-top: 10px;
+	margin-left: -8px;
+	float: left;
+	cursor: pointer;
+	width: 14px;
+	height: 15px;
+}
+
+.imageDefilante
+{
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+
+<!-- *_*_*_*_*_*_*_*_*_**_*_*_*_*_*_*_**_*_*_*_*_*_*_*_*_*_*_*_**_*_*_*__*_**_*_*_*_*_*_*_*_*_*__**__*_**_*_*_*__*_*_*_**_ -->
+
+<div  style="box-shadow: 0 0 4px rgba(0, 0, 0, 5); background: #abbfff; width: 100%; border-top:1px solid #abbfff; border-left:1px solid #abbfff; border-right:1px solid #abbfff; height: 30px; ">
+   <div id="TitreVueParametrage"  style="padding: 10px; text-align:center; font-weight: bold; font-size: 13px; color: black;">
+    Param&eacute;trage
+   </div>
+</div>
+<div id="face1" style="width: 100%; box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); background: #ffffff; max-height: 1000px; border: 1px solid #cccccc;">
+<div style="width: 97%; margin-left: 10px; padding-bottom:15px; padding-top: 1px;">
+ 
+<table id="MenuParametrage" class="tabParamDesign">
+  <tr> 
+     <td>
+       <div>
+           <p>
+             <a>
+			   <img id="ImageEnTeteDefilant" src="<?php echo $this->basePath().'/img/article/image_1.png'; ?>" >
+		     </a>
+		   </p>
+		   <label> Images d'en t&ecirc;te </label>
+       </div>
+     </td>
+     
+     <td>
+       <div>
+           <p>
+             <a>
+			   <img id="PubliciteMenu" src="<?php echo $this->basePath().'/img/article/publicite_1.png'; ?>" >
+		     </a>
+		   </p>
+		   <label> Publicit&eacute; </label>
+       </div>
+     </td>
+     
+     <td>
+       <!-- ****** -->
+     </td>
+     
+     <td>
+       <!-- ****** -->
+     </td>
+  </tr>
+</table>
+
+</div>
+</div>	
+
+<div id="face2" style="width: 100%; box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); background: #ffffff; max-height: 1000px; border: 1px solid #cccccc;">
+<div style="width: 97%; margin-left: 10px; padding-bottom:15px; padding-top: 1px;">
+
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<!-- ***GESTION DES IMGES DE L'ENTETE*** -->
+<div id="MenuImageEnTeteDefilant">
+<a><img id="RetourMenu1" src="<?php echo $this->basePath().'/img/article/left_16.png'; ?>" ></a>
+<a><img id="AjoutImgMenu1_right" src="<?php echo $this->basePath().'/img/article/plus_16.png'; ?>" ></a>
+ <table >
+   <!-- GESTION DES IMAGES-->
+   <tr>
+     <td>
+     
+     
+       <div class="contenu_gestion_image">
+          
+       <!-- ************************************************************************************* -->
+       <!-- ************************************************************************************* -->
+       <!-- ************************************************************************************* -->
+          <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/flexslider2.css'); ?>
+          <div id="ListeDesSliders">
+             <!-- ZONE D'AFFICHAGE DES IMAGES DEFILANTES POUR LA PARTIE PARAMETRAGE -->
+             <!-- ZONE D'AFFICHAGE DES IMAGES DEFILANTES POUR LA PARTIE PARAMETRAGE -->
+             <!-- ZONE D'AFFICHAGE DES IMAGES DEFILANTES POUR LA PARTIE PARAMETRAGE -->
+          </div>
+		 
+       <!-- ************************************************************************************* -->
+       <!-- ************************************************************************************* -->
+       <!-- ************************************************************************************* -->   
+               
+       </div>
+       
+       <div class="confirmation_suppression"> 
+          <!-- image a supprimer --> 
+       </div>
+       
+       <div class="modification_donnees"> 
+          <!-- image a modifier -->
+       </div>
+       
+       <div class="ajouter_image_defilante"> 
+          <!-- image a ajouter -->
+       </div>
+       
+     </td>
+   </tr>
+</table>  
+</div>
+
+
+
+
+
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<!-- ***GESTION DE LA BANNIERE DE PUBLICITE*** -->
+<div id="MenuPubliciteMenu">
+<a><img id="RetourMenu2" src="<?php echo $this->basePath().'/img/article/left_16.png'; ?>" ></a>
+ 
+ <table>
+   <!-- NIVEAU 1 --> <!-- NIVEAU 1 --> <!-- NIVEAU 1 --> <!-- NIVEAU 1 -->
+   <tr>
+      <td>
+        <div class="niveau_1"> <img src="<?php echo $this->basePath().'/img/article/minus.png'; ?>" > <span> Niveau 1</span> </div>
+        <div class="contenu_niveau_1">  
+        
+        
+        <!-- ZONE D'AJOUT DE LA PHOTO -->
+        <!-- ZONE D'AJOUT DE LA PHOTO -->
+        <!-- ZONE D'AJOUT DE LA PHOTO -->
+          <div id="ZoneAjoutPhoto" style="float: left; margin-left: 10px; width: 30%; height: 80%; margin-top: 5px;">
+            <div class="photo_article" id='photo'>
+              <!-- RECUPERER L'IMAGE -->
+		      <input type='file' name="fichier" />
+		    </div>
+		    <!-- FICHIER TAMPON POUR RECUPERER L'IMAGE DANS LE CONTROLLER -->
+		    <input type='hidden' id="fichier_tmp" name="fichier_tmp" />
+			       
+		    <div class="supprimer_photo" id="supprimer_photo" style="width: 24px; height: 15px; float: left;"> </div>
+          </div>
+        
+        <!-- ZONE DE SAISI DE LA DESCRIPTION -->
+        <!-- ZONE DE SAISI DE LA DESCRIPTION -->
+        <!-- ZONE DE SAISI DE LA DESCRIPTION -->
+          <div id="ZoneDeSaisiLienDescript"></div>
+          <div id="form_design" style="float: left; margin-left: 10px; width: 27%; height: 80%; background: yello;">
+
+            <div id="champ1">
+                 <label>Titre: </label>
+                 <textarea id="description" > </textarea>
+		    </div>
+		    <div id="champ2">
+                 <label>Lien vers la page: </label>
+                 <textarea id="lien" placeholder="http://"> </textarea>
+		    </div>
+		    
+          </div>
+        <!-- ZONE D'AFFICHAGE DU BOUTON -->
+        <!-- ZONE D'AFFICHAGE DU BOUTON -->
+        <!-- ZONE D'AFFICHAGE DU BOUTON -->
+          <div style="float: left; margin-left: 10px; width: 16%; height: 80%; margin-top: 5px;">
+            <div id="buttonARDesign">
+               <button> Ajouter <img src="<?php echo $this->basePath().'/img/article/arrow_right.png'; ?>"> </button>
+		    </div>
+		    
+		    <div id="buttonARDesignModifier">
+		       <div id="buttonAnnulerModif"><img  src="<?php echo $this->basePath().'/img/article/stop_32.png'; ?>" title="annuler"></div>
+               <button> Modifier <img src="<?php echo $this->basePath().'/img/article/arrow_right.png'; ?>"> </button>
+		    </div>
+          </div>
+          
+        <!-- ZONE D'AFFICHAGE DE LA LISTE DES IMAGES DISPO DANS LA BASE -->
+        <!-- ZONE D'AFFICHAGE DE LA LISTE DES IMAGES DISPO DANS LA BASE -->
+        <!-- ZONE D'AFFICHAGE DE LA LISTE DES IMAGES DISPO DANS LA BASE -->
+          <div style="float: left; margin-left: 10px; width: 20%; height: 80%; margin-top: 5px;">
+            <div>
+                <div id="splitter">
+                   <div style="overflow: hidden;">
+                      <div style="border: none;" id="listbox">
+                      </div>
+                   </div>
+                   <div style="overflow: hidden;" id="ContentPanel">
+                   </div>
+                </div>
+		    </div>
+          </div>
+        
+        
+        </div>
+      </td>
+   </tr>
+   
+   <!-- NIVEAU 2 --> <!-- NIVEAU 2 --> <!-- NIVEAU 2 --> <!-- NIVEAU 2 -->
+   <tr>
+      <td>
+        <div class="niveau_2"> <img src="<?php echo $this->basePath().'/img/article/plus.png'; ?>" > <span> Niveau 2</span> </div>
+        <div class="contenu_niveau_2"> 
+           
+           <table style="width: 100%; height: 30px;" >
+             <tr style="width: 100%;">
+                <td style="width: 50%;"> 
+                   <div style="height: 100%;">
+                      <label>Titre: </label>
+                      <input type="text" id="titre">
+                      
+                      <div id="AffichageBoutonN2" style="width: 81%; margin-top: 10px;">
+                      <p style="text-align: right; width: 100%;"> 
+                        <button class='PublicationNiveau2' style='cursor:pointer; height: 35px; width: 35px; background: transparent; border-radius: 50%; '  onclick='ajouterDonneesSaisiesN2(); return false;'> 
+                           <img id='PublicationNiveau2' style="position: relative; top: 0px;" src="<?php echo $this->basePath().'/img/article/Favorite64.png'; ?>" >
+                        </button>
+                      </p>
+                      </div>
+		           </div>
+                </td>
+                
+                <td style="width: 50%;">
+                   <div>
+                      <label>Contenu: </label>
+                      <textarea id="contenu" > </textarea>
+		           </div>
+                </td>
+             </tr>
+           </table>
+           
+        </div>
+      
+      </td>
+   </tr>
+   
+   <!-- NIVEAU 3 --> <!-- NIVEAU 3 --> <!-- NIVEAU 3 --> <!-- NIVEAU 3 -->
+   <tr>
+      <td>
+        <div class="niveau_3"> <img src="<?php echo $this->basePath().'/img/article/plus.png'; ?>" > <span> Niveau 3</span> </div>
+        <div class="contenu_niveau_3"> 
+           
+        </div>
+        
+      </td>
+   </tr>
+ </table>
+ 
+</div>
+
+</div>
+</div>
+
+<?php $id = $this->id; ?>
+<?php $publier = $this->publier; ?>
+<?php $listeDesImages = $this->listeDesImages; ?>
+<?php $listeDesLiens  = $this->listeDesLiens; ?>
+<?php $listeDesDescription = $this->listeDesDescription; ?>
+<?php $imageMarqueeRecup = $this->imageMarqueeRecup; ?>
+<!-- Par défaut on entre avec les données de la BD -->
+<!-- Par défaut on entre avec les données de la BD -->
+<div id="LesScriptsDesImages">
+<script>
+  var Id = [<?php echo $id;?>];
+  var Publier = [<?php echo $publier;?>];
+  var ListeImages = [<?php echo $listeDesImages;?>];
+  var ListeLiens = [<?php echo $listeDesLiens;?>];
+  var ListeDescription = [<?php echo $listeDesDescription;?>];
+  var ImageMarqueeRecup = "<?php echo $imageMarqueeRecup;?>";
+</script>
+</div>
+
+<?php if($this->pub2) { $chainePub = str_replace("'", "\'", $this->pub2->contenu); }?>
+
+<script>
+scriptInitialisation();
+scriptListeDesImages();
+
+initAnimation();
+animationPliantDepliant1();
+animationPliantDepliant2();
+animationPliantDepliant3();
+
+<?php if( $this->pub2 ) { ?> 
+
+  if(<?php echo $this->pub2->actif;?> == 1){
+    $('#titre').val('<?php echo $this->pub2->titre;?>');
+    $('#contenu').val('<?php echo $chainePub;?>');
+  }
+
+  $('#titre').attr('disabled', true).css({'background': '#f6f6f6'});
+  $('#contenu').attr('disabled', true).css({'background': '#f6f6f6'});
+  $('#AffichageBoutonN2').html(''+
+          '<div style="float: right;">'+
+          '<button class="dePublicationNiveau2" style="cursor:pointer; height: 35px; width: 35px; background: transparent; border-radius: 50%; "  onclick="depublierDonneesSaisiesN2(); return false;">'+ 
+          '<img id="dePublicationNiveau2" src="/www-simens-sn/public/img/tick_32.png" >'+
+          '</button>'+
+          '</div>'
+          );
+
+<?php } ?> 
+
+</script>
+

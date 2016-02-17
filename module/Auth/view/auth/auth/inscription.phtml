@@ -1,0 +1,112 @@
+<style>
+#s_inscrire a { color: #49afcd; } 
+</style>
+
+<?php  echo $this->headLink()->prependStylesheet($this->basePath().'/temp_auth/css/style.css');?>
+
+<div class="module form-module">
+  <div class="toggle"><i class="fa-pencil">Se connecter</i>
+  </div>
+  
+  <?php
+   $form = $this->form;
+   $form->setAttribute ( 'action', $this->url ( 'auth', array ('action' => 'login') ));
+   $form->prepare();
+  ?>
+  <div class="form">
+    <h2><?php echo $this->subheadtitle?></h2>
+      <?php echo $this->form()->openTag($form); ?>
+           <?php echo $this->formRow($form->get('pseudo')); ?>
+           <?php echo $this->formRow($form->get('email_personne')); ?>
+           <?php echo $this->formRow($form->get('nouveau_mot_de_passe')); ?>
+           <?php echo $this->formRow($form->get('confirm_mot_de_passe')); ?>
+           <div id="BoutonEmplacement"></div>
+      <?php echo $this->form()->closeTag(); ?>
+  </div>
+  
+  
+  <?php
+   $form2 = $this->form2;
+   $form2->setAttribute ( 'action', $this->url ( 'auth', array ('action' => 'login') ));
+   $form2->prepare();
+  ?>
+  <div class="form">
+    <h2>Connexion</h2>
+    <?php echo $this->form()->openTag($form2); ?>
+         <?php echo $this->formRow($form2->get('pseudo')); ?>
+         <?php echo $this->formRow($form2->get('mot_de_passe')); ?>
+         <button>Connexion</button>
+    <?php echo $this->form()->closeTag(); ?>
+  </div>
+  <div class="cta"><a href=""></a></div>
+</div>
+
+
+
+
+<?php 
+$listePseudo = $this->listePseudo; 
+$listeEmail = $this->listeEmail;
+
+// CONSTRUCTION DU TABLEAU DES PSEUDO EN JS
+echo "<script type='text/javascript'>";
+echo "var listePseudoJS = ['']; var j = 1;";
+ for($i=0; $i<count($listePseudo); $i++){
+   echo " listePseudoJS[j++] = '" . $listePseudo[$i] . "';";
+ }
+ 
+echo "var listeEmailJS = ['']; var j = 1;";
+ for($i=0; $i<count($listeEmail); $i++){
+   echo " listeEmailJS[j++] = '" . $listeEmail[$i] . "';";
+ }
+echo "</script>";
+?>
+
+<script type="text/javascript">
+$("#BoutonEmplacement").html("<button>Enregistrer</button>");
+
+
+function check(input) {
+	document.getElementById('confirm_mot_de_passe').value = "";
+}
+
+function check2(input) {
+	  if (input.value != document.getElementById('nouveau_mot_de_passe').value) {
+	    input.setCustomValidity('Les deux mots de passe ne correspondent pas.');
+	  } else {
+	    // le champ est valide : on réinitialise le message d'erreur
+	    input.setCustomValidity(''); return false;
+	  }
+}
+
+//*************** PSEUDO --- PSEUDO --- PSEUDO **************************
+var actuel_pseudo = $("#pseudo").val();
+function verifPseudo(input) { 
+	for (var i = 0, c = listePseudoJS.length; i < c; i++) {
+
+		if(listePseudoJS[i] == input.value && input.value != actuel_pseudo){ 
+			input.setCustomValidity('Ce pseudo existe dÃ©ja choisissez un autre.');
+			return true;
+		} else {
+		    // le champ est valide : on réinitialise le message d'erreur
+		    input.setCustomValidity('');
+		  }
+	}
+}
+
+//*************** EMAIL --- EMAIL --- EMAIL *****************************
+function verifEmail(input) { 
+	for (var i = 0, c = listeEmailJS.length; i < c; i++) {
+
+		if(listeEmailJS[i] == input.value){ 
+			input.setCustomValidity('Cet email existe dÃ©ja choisissez un autre.');
+			return true;
+		} else {
+		    // le champ est valide : on réinitialise le message d'erreur
+		    input.setCustomValidity('');
+		  }
+	}
+}
+</script>
+
+<?php echo $this->headScript()->appendFile($this->basepath().'/temp_auth/js/index2.js'); ?>

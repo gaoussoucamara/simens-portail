@@ -1,0 +1,254 @@
+<?php echo $this->doctype(); ?>
+
+<html>
+<head>
+<meta charset="utf-8">
+        <?php echo $this->headTitle('SIMENS '.'Système d\'Information Médical National du Sénégal')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/simens_tabicon.ico'))
+        				->prependStylesheet($this->basePath() . '/css/style.css')
+        				->prependStylesheet($this->basePath() . '/css/font-awesome.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/flexslider.css')
+        				->prependStylesheet($this->basePath() . '/fancybox/jquery.fancybox-1.3.4.css')
+                        ->prependStylesheet($this->basePath() . '/css/resp.css')
+                        ->prependStylesheet($this->basePath() . '/css/reset.css')
+        ?>
+        
+	<!--  <link rel="stylesheet" type="text/css" href="colorfa44.css?color=23dbdb" class="color"> -->
+
+<!-- Scripts -->
+        <?php echo $this->headScript()
+        	->prependFile($this->basePath() . '/js/script.js')
+            ->prependFile($this->basePath() . '/fancybox/jquery.fancybox-1.3.4.js')
+        	->prependFile($this->basePath() . '/js/jquery.flexslider.js')
+        	->prependFile($this->basePath() . '/js/retina.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.isotope.min.js')
+            ->prependFile($this->basePath() . '/js/portfolio.js')
+        ; ?>
+
+
+</head>
+<body>
+	<div id="wrap">
+		<header>
+			<div id="header-bar">
+				<div id="header-bar-content">
+					<div class="inner">
+
+						<ul id="socials">
+							<form></form>
+							<form>
+								<label for="contact-name">Identifiant:</label> <input
+									type="text" id="contact-name" name="identifiant"> <label
+									for="contact-email">Password</label> <input type="text"
+									id="contact-email" name="pass" spellcheck="false"> <input
+									type="submit" id="contact-submit" value="OK" class="button">
+							</form>
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div id="header-bar-handle"></div>
+			</div>
+			<div class="inner relative">
+				<a <?php echo "href=\"" . $this->basePath() . "/actualite\""?>><img <?php echo "src=\"" . $this->basePath() . "/img/logo.png\"" ?> alt="simens"></a> <a
+					id="menu-toggle" class="button dark" href="#"><i
+					class="icon-reorder"></i></a>
+				<nav id="navigation">
+					<form id="search">
+						<input type="text" name="s" spellcheck="false">
+					</form>
+					<ul id="main-menu">
+						<li class="current-menu-item"><a <?php echo "href=\"" . $this->basePath() . "/actualite\""?>>Actualités</a></li>
+						<li class="parent"><a <?php echo "href=\"" . $this->basePath() . "/maladie\""?>>Maladies</a>
+							<ul class="sub-menu">
+							    <?php if($this->layout()->user['role_personne'] == 'moderateur' ) {?>
+								  <li id="menu_a1"><a href="<?php echo $this->basePath().'/maladie/liste-article-soumis';?>">
+								      <img style="margin-right: 6px; float: left;" src="<?php echo $this->basePath().'/img/article/42_.png'; ?>">
+								      Liste des articles
+								    </a>
+								  </li>
+								<?php } ?>
+								
+								
+								<?php if($this->layout()->user['role_personne'] == 'redacteur' ) {?>
+								  <li id="menu_a2"><a href="<?php echo $this->basePath().'/maladie/liste-article';?>">
+								      <img style="margin-right: 6px; float: left;" src="<?php echo $this->basePath().'/img/article/42_.png'; ?>">
+								      Liste des articles
+								    </a>
+								  </li>
+								  <li id="menu_a3"><a href="<?php echo $this->basePath().'/maladie/redaction-article';?>">
+								      <img style="margin-right: 6px; float: left;" src="<?php echo $this->basePath().'/img/article/44_.png'; ?>">
+								      Nouvel article
+								    </a>
+								  </li>
+								<?php } ?>
+								
+								
+								<li><a href="">Type 1</a></li>
+								<li><a class="parent" href="#">Type 2</a>
+									<ul class="sub-menu">
+										<li><a href="">Sous Type 1</a></li>
+										<li><a href="">Sous Type 2</a></li>
+										<li><a href="">Sous Type 3</a></li>
+									</ul></li>
+							</ul>
+						</li>
+						<li class="parent"><a <?php echo "href=\"" . $this->basePath() . "/bonnepratique\""?>>Bonnes Pratiques</a>
+							<ul class="sub-menu">
+								<li><a href="">Alimentaires</a></li>
+								<li><a href="">Hygiénique</a></li>
+								<li><a href="">Physiques</a></li>
+								<li><a href="">Diverses</a></li>
+							</ul></li>
+						<li class="menu-item"><a href="#">Forum de discussions</a>
+						<li class="parent"><a <?php echo "href=\"" . $this->basePath() . "/presentation/presentation/resume\""?>>Le projet SIMENS</a>
+							<ul class="sub-menu">
+								<li><a <?php echo "href=\"" . $this->basePath() . "/presentation/presentation/resume\""?>>Résumé</a></li>
+								<li><a <?php echo "href=\"" . $this->basePath() . "/presentation/presentation/financement\""?>>Financement</a></li>
+								<li><a <?php echo "href=\"" . $this->basePath() . "/presentation/presentation/contributeurs\""?>>Contributeurs</a></li>
+								<li><a <?php echo "href=\"" . $this->basePath() . "/presentation/presentation/partenaires\""?>>Partenaires</a>
+								<li><a <?php echo "href=\"" . $this->basePath() . "/presentation/presentation/contact\""?>>Contact</a></li>
+							</ul></li>
+					</ul>
+				</nav>
+				<div class="clear"></div>
+			</div>
+		</header>
+		<div id="slider" class="flexslider">
+			<ul class="slides">
+				<li><img <?php echo "src=\"" . $this->basePath() . "/img/blog/image-une.JPG\"" ?> alt="">
+					<div class="inner">
+						<h2 class="flex-caption" style="bottom: 60px;">La santé en
+							chiffres</h2>
+						<h3 class="flex-caption" style="bottom: 20px;">Vivamus dui
+							facilisis vel mollis</h3>
+					</div></li>
+				<li><img <?php echo "src=\"" . $this->basePath() . "/img/blog/image-une.JPG\"" ?> alt="">
+					<div class="inner">
+						<h2 class="flex-caption" style="bottom: 60px;">Dolor sit amet</h2>
+						<h3 class="flex-caption" style="bottom: 20px;">Vivamus dui
+							facilisis vel mollis</h3>
+					</div></li>
+			</ul>
+			<script type="text/javascript">
+				/* <![CDATA[ */
+					$(window).load(function(){
+						$('.flexslider').flexslider({
+							//smoothHeight: true,
+							controlNav: false,
+							animation: "slide",
+							start: function(slider){
+								$('body').removeClass('loading');
+							}	
+						});
+					});
+				/* ]]> */
+			</script>
+		</div>
+		<div id="content">
+			<?php echo $this->content; ?>
+			<div class="inner">
+				<div class="highlight"></div>
+				<br>
+				<div class="container">
+					<div class="two_third">
+						<h2></h2>
+						<div class="accordion">
+							<a class="switch opened" href="#"><div></div>Articles populaires</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod</p>
+								<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim
+									ad minim veniam,</p>
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+									ea commodo consequat.</p>
+							</div>
+							<a class="switch" href="#"><div></div>Astuces etc</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod</p>
+								<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim
+									ad minim veniam,</p>
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+									ea commodo consequat.</p>
+							</div>
+							<a class="switch" href="#"><div></div>Encore un autre accordeon</a>
+							<div class="content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod</p>
+								<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim
+									ad minim veniam,</p>
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+									ea commodo consequat.</p>
+							</div>
+						</div>
+					</div>
+					<div class="one_third">
+						<?php echo $this->pub?>
+					</div>
+				</div>
+				<div class="highlight"></div>
+			</div>
+		</div>
+		<footer class="dark">
+			<div class="container inner">
+				<div class="one_fourth">
+					<a class="logo" href="#"><img <?php echo "src=\"" . $this->basePath() . "/img/logo.png\"" ?> alt="Eventis"></a>
+					<br> <br>
+					<p>Suspendisse eu augue risus dui facilisis vel mollis vel, dapibus
+						eu libero. Sed sit ligula a magna dignissim feugiat sit amet nec
+						lorem.</p>
+				</div>
+				<div class="one_fourth">
+					<h3>Archive</h3>
+					<ul class="link-list">
+						<li><a href="#">November 2012</a></li>
+						<li><a href="#">December 2012</a></li>
+						<li><a href="#">Janurary 2013</a></li>
+						<li><a href="#">February 2014</a></li>
+					</ul>
+				</div>
+				<div class="one_fourth">
+					<h3>Categories</h3>
+					<ul class="link-list">
+						<li><a href="#">Alpha</a></li>
+						<li><a href="#">Beta</a></li>
+						<li><a href="#">Monique</a></li>
+						<li><a href="#">Nims</a></li>
+						<li><a href="#">Web </a></li>
+					</ul>
+				</div>
+				<div class="one_fourth contacts">
+					<span class="phone-number">(625) 789-4500</span>
+
+					<div class="space"></div>
+					<span>sanar</span> <a href="#">office@example.com</a>
+				</div>
+			</div>
+			<div id="footer-bar">
+				<div class="inner container">
+					<div class="one_half">
+						<span>&copy; Copyright 2013 <a href="#">simens</a>. Ufr sat etc
+						</span>
+					</div>
+					<div class="one_half">
+						<ul>
+							<li><a href="#">Terms</a></li>
+							<li><a href="#">Privacy</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

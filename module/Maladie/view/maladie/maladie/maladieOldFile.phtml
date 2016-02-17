@@ -1,0 +1,300 @@
+<?php use Auth\View\Helper\DateHelper; ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/w2ui/w2ui-1.4.3.min.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/w2ui/w2ui-1.4.3.min.js'); ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/jpaginate/css/style.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jpaginate/jquery.paginate.js'); ?>
+
+<style>
+#a1 a{ color: #49afcd; }
+/* ELEMENTS */
+div.listeToutesLesMaladiesPubliees {
+	height: 60px; 
+	background-color: #efefef;
+	border-left: 3px solid #49afcd;
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 1px solid #e8e8e8;
+	border-radius: 0 2px 2px 0;
+	box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.2);
+	margin-bottom: 5px;
+}
+
+div.titreMaladiesPubliees {
+	height: 30px; 
+	background-color: #efefef;
+	border-left: 3px solid #49afcd;
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 1px solid #49afcd;
+	border-radius: 0 2px 2px 0;
+	box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.2);
+	margin-bottom: 5px;
+}
+
+div.numero {
+	float: left;
+	height: 60px;
+	border-right: 1px solid #cccccc;
+	text-align: center;
+	min-width: 4%;
+}
+
+div.icone {
+	height: 60px; 
+	float: left;
+	width: 10%;
+}
+
+div.titre {
+	height: 60px; 
+	float: left;
+	border-right: 1px solid #cccccc;
+	width: 35%;
+}
+
+div.date {
+	height: 60px;
+	float: left;
+	border-right: 1px solid #cccccc;
+	width: 25%;
+}
+
+div.auteur {
+	height: 60px; 
+	overflow: hidden;
+	float: left;
+	width: 25%;
+}
+
+.numero div {
+	margin-top: 20px;
+}
+
+.icone div {
+	margin-left: 8px;
+	margin-top: 3px;
+	width: 50px;
+}
+
+.titre div {
+	margin-top: 15px;
+	padding-left: 0px;
+	height: 28px;
+	overflow: hidden;
+	line-height: 14px;
+	font-size: 13px;
+}
+
+.dateOnly {
+	margin-top: 15px;
+	padding-left: 10px;
+}
+
+.heureOnly {
+	margin-top: 2px;
+	padding-left: 50px;
+}
+
+.auteur div {
+	margin-top: 15px;
+	padding-left: 10px;
+	height: 28px;
+	line-height: 14px;
+	overflow: hidden;
+}
+
+/*En tete*/
+div.t_numero {
+	float: left;
+	height: 30px;
+	border-right: 1px solid #cccccc;
+	text-align: center;
+	min-width: 4%;
+}
+.t_numero div {
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+div.t_titre {
+	float: left;
+	height: 30px;
+	border-right: 1px solid #cccccc;
+	min-width: 45%;
+}
+.t_titre div {
+	margin-top: 10px;
+	padding-left: 65px;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+div.t_date {
+	float: left;
+	height: 30px;
+	border-right: 1px solid #cccccc;
+	min-width: 25%;
+}
+.t_date div {
+	margin-top: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+div.t_auteur {
+	float: left;
+	height: 30px;
+	min-width: 25%;
+}
+.t_auteur div {
+	margin-top: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.paginer {
+	margin-top: 25px;
+	float: right;
+}
+</style>
+
+<?php 
+$j=1; 
+$Control = new DateHelper();
+$k=1;
+
+$nbLigne = count($this->listeArticle);
+$ligne = 2;
+?>
+
+<div class="titreMaladiesPubliees">
+             <div class="t_numero"><div>N&ordm;</div></div>
+             
+             <div class="t_titre">
+               <div> Titre de l'article  </div>
+             </div>
+             
+             <div class="t_date"><div> Date de la publication</div></div>
+             
+             <div class="t_auteur"><div> r&eacute;dacteur </div></div>
+</div>
+
+          
+<div id="pagination" >
+<?php for ($i = 0 ; $i < 100 && $i < $nbLigne ; $i++){ ?> <!-- Pour n'afficher uniquement que les 100 derniers articles -->
+
+        <?php if($this->listeArticle) { ?>
+        
+          <?php if($i == 0) { ?>
+            <div id="<?php echo 'page'.$k++; ?>" class="_current">
+          <?php } if($i == $ligne) { ?>
+            <div id="<?php echo 'page'.$k++; ?>" style="display:none;">
+          <?php } ?>
+          
+		  <div class="listeToutesLesMaladiesPubliees"  id='<?php echo 'article_'.$i; ?>' >
+             <div class="numero"><div><?php echo $j++; ?></div></div>
+             
+             <div class="icone">
+               <div class='<?php echo 'hover_'.$this->listeArticle[$i]['code_article']; ?>' id='<?php echo 'hover_'.$this->listeArticle[$i]['code_article']; ?>' style='border: 1px solid #ccc;  height: 50px; border-radius: 50%; box-shadow: 0pt 0pt 12px rgba(10, 0, 0, 0.1);'>
+     		      <a href='javascript:zoomer(<?php echo $this->listeArticle[$i]['code_article']; ?>)'><img style='width: 50px; height: 50px; border-radius: 50%; cursor:pointer;' src='<?php echo $this->basePath()."/img/images_articles/".$this->listeArticle[$i]['image_article']; ?>'></a>
+               </div>
+             </div>
+             
+             <div class="titre">
+               <div class="<?php echo 'icone_visualiser'.$i;?>">
+               <div class='<?php echo 'icone_vue'.$i;?>' style='float: right; margin-top: -5px; opacity: 0.2; color: white;'>
+                  <a href="javascript:visualiser(<?php echo $this->listeArticle[$i]['code_article']; ?>)"><img style='cursor:pointer; margin-right: 5px; margin-left: 5px;' src='<?php echo $this->basePath()."/img/voird.png"; ?>'></a>
+               </div>
+                  <?php echo $this->listeArticle[$i]['titre_article']; ?>   
+               </div>
+             </div>
+             <script>             
+              $("<?php echo '.icone_visualiser'.$i;?>").hover(function(){
+	             $('<?php echo '.icone_vue'.$i;?>').css({'opacity' : '0.9', 'color' : 'white'});
+              },function(){
+	             $('<?php echo '.icone_vue'.$i;?>').css({'opacity' : '0.2', 'color' : 'white'});
+              });
+             </script>
+             
+             <div class="date">
+               <div class="dateOnly"><span style="font-style: italic;"> publi&eacute; le: </span><?php echo $Control->convertDate($this->listeArticle[$i]['date_publication_article']); ?></div>
+               <div class="heureOnly"><span style="font-style: italic;"> &agrave;: </span><?php echo $Control->converttime($this->listeArticle[$i]['date_publication_article']); ?></div>
+             </div>
+             
+             <div class="auteur"><div> <?php echo $this->listeArticle[$i]['prenom_personne'].' '.$this->listeArticle[$i]['nom_personne']; ?></div></div>
+          </div>
+          
+          <?php if($i == 1) { ?>
+            </div>
+          <?php } ?>
+          <?php if($i == $ligne+1) { $ligne+=2;?>
+            </div>
+          <?php } ?>
+          
+		<?php } ?>
+  
+  <?php } ?>
+  <?php if($nbLigne % 2 != 0) {?>
+    </div>          
+  <?php } ?>
+  
+  <div id="paginateur" style="float: right; width: 185px;">  </div>
+  
+  </div>
+  
+  
+  
+  <div id="imageZoom">
+  </div>
+  
+  
+<script>
+
+var base_url = window.location.toString();
+var tabUrl   = base_url.split("public");
+
+function zoomer(id){
+	$.ajax({
+        type: 'POST',
+        url: tabUrl[0]+'public/maladie/zoomer-image-liste',
+        data:'id='+id,
+        success: function(data) {    
+        	var result = jQuery.parseJSON(data);
+        	$('#imageZoom').html(result);
+        },
+        error:function(e){console.log(e); alert("Une erreur interne est survenue!");},
+        dataType: "html"
+    });
+}
+
+function visualiser (id){
+	vart=tabUrl[0]+'public/actualite/details-article/val/'+id;
+	$(location).attr("href",vart);
+}
+
+pagination();
+function pagination(){
+	$("#paginateur").paginate({
+		count 		: 3,
+		start 		: 1,
+		display     : 3,
+		border					: true,
+		border_color			: '#fff',
+		text_color  			: '#fff',
+ 		background_color    	: '#555',	
+		border_hover_color		: '#ccc',
+		text_hover_color  		: '#fff',
+		background_hover_color	: '#49afcd', 
+		images					: false,
+		mouse					: 'press',
+		onChange     			: function(page){
+									$('._current','#pagination').removeClass('_current').hide();
+									$('#page'+page).addClass('_current').show();
+								  }
+	});
+}
+
+</script>

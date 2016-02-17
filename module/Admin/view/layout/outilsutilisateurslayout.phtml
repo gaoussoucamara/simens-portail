@@ -1,0 +1,80 @@
+<div id="title" style="padding-top: 10px; padding-bottom: 10px; height:10px;">
+		<div class="inner">
+			<?php if ($this->identity()) { ?>
+			    <ol class="infosutilisateurs">
+					<li id='se_connecter' ><?php echo $this->layout()->user['prenom_personne'].'  '.$this->layout()->user['nom_personne']; ?> </li>
+				</ol>
+				<ol class="outilsutilisateurs">
+				
+				<?php if($this->layout()->user['role_personne'] == 'redacteur' ) {?>
+				
+				   <li>
+				     <div style="position: absolute;">
+				         <a id="listeA" href="<?php echo $this->basePath() . "/maladie/liste-article"?>">
+				            <img style="position: absolute; margin-top: -8px;" src="<?php echo $this->basePath().'/img/article/42_a.png'; ?>" title='liste des articles' >
+				         </a> 
+				         <a id="nouvelleArt" style="margin-left: 27px;" href="<?php echo $this->basePath() . "/maladie/redaction-article"?>">
+				            <img style="position: absolute; margin-top: -8px;" src="<?php echo $this->basePath().'/img/article/44_a.png'; ?>" title='nouvel article' >
+				         </a> 
+				     </div>
+				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   </li>
+				   
+				<?php } ?>
+				
+				<?php if($this->layout()->user['role_personne'] == 'moderateur' ) {?>
+				
+				   <li style="width: 130px;">
+				     <div style="position: absolute;" >
+				         <a href="#">
+				         </a>
+				         
+				          <a id="listeAS" style="margin-left: 27px;" href="<?php echo $this->basePath() . "/maladie/liste-article-soumis"?>">
+				            <img style="position: absolute; margin-top: -8px;" src="<?php echo $this->basePath().'/img/article/42_a.png'; ?>" title='liste des articles soumis' >
+				          </a>
+				     </div>
+				     
+				     <div style="position: absolute;">
+				         <a id="listeActu" style="margin-left: 53px;" href="<?php echo $this->basePath() . "/actualite/liste-actualite"; ?>">
+				            <img style="position: absolute; margin-top: -6px;" src="<?php echo $this->basePath().'/img/article/list18.png'; ?>" title='liste des actualit&eacute;s' >
+				         </a> 
+				         <a id="nouvelleActu" style="margin-left: 27px;" href="<?php echo $this->basePath() . "/actualite/nouvelle-actualite"; ?>">
+				            <img style="position: absolute; margin-top: -7px;" src="<?php echo $this->basePath().'/img/article/New19.png'; ?>" title='nouvelle actualit&eacute;'>
+				         </a> 
+				     </div>
+				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   </li>
+				   
+				<?php } ?>
+				   
+				<?php if($this->layout()->user['role_personne'] == 'administrateur' || $this->layout()->user['role_personne'] == 'super-administrateur' ) {?>
+				   <li style="width: 130px;">
+				     
+				     <div style="position: absolute;">
+				         <a style="margin-left: 53px;">
+				         </a> 
+				         <a id="parametrageAdmin" style="margin-left: 27px;" href="<?php echo $this->basePath() . "/admin/parametrage"; ?>">
+				            <img style="position: absolute; margin-top: -7px;" src="<?php echo $this->basePath().'/img/article/Application.png'; ?>" title='param&eacute;trage'>
+				         </a> 
+				     </div>
+				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   </li>
+				   <li id='l_admin' ><a href="<?php echo $this->basePath() . "/auth/admin"?>"> Admin</a> | </li>
+				<?php } ?>
+				
+				<li id='le_profil' ><a href="<?php echo $this->basePath() . "/auth/". $this->layout()->user['role_personne']; ?>">Profil</a> | </li>
+				<li><a href="<?php echo $this->basePath() . "/auth/logout"?>">Déconnexion</a></li>
+				</ol>
+			<?php }
+					else {	
+				?>
+				<ol class="outilsutilisateurs">
+					<li id='se_connecter' ><a href="<?php echo $this->basePath() . "/auth/login"?>">Se connecter </a> | </li>
+					<li id='s_inscrire' ><a href="<?php echo $this->basePath() . "/auth/inscription"?>"> S'inscrire </a> </li>
+				</ol>
+				<?php 
+				}
+				?>
+			
+		</div>
+</div>

@@ -1,0 +1,113 @@
+<style>
+#l_admin a { color: #49afcd; }
+.form input { color: black; }
+</style>
+
+
+<?php  echo $this->headLink()->prependStylesheet($this->basePath().'/temp_auth/css/style.css');?>
+
+<div class="module form-module">
+  <div class="toggle3"><i class=""></i>
+  </div>
+  
+  
+  <?php
+   $form = $this->form;
+   $form->prepare();
+   $form->setAttribute ( 'action', $this->url ( 'auth', array ('action' => 'enregistrer-modification') ));
+   $form->setAttribute('method','post');
+  ?>
+  <div class="form profil">
+    <h2><?php echo $this->subheadtitle?></h2>
+      <?php echo $this->form()->openTag($form); ?>
+      
+         <?php echo $this->formhidden($form->get('id_personne')); ?>
+         
+         <!-- Temoin utilisateur -->
+         <!-- input type="hidden" name="temoin_utilisateur" id="temoin_utilisateur"-->
+         
+         <?php echo $this->formRow($form->get('genre')); ?>
+         <?php echo $this->formRow($form->get('nom_de_famille')); ?>
+         <?php echo $this->formRow($form->get('prenom')); ?>
+         <?php echo $this->formRow($form->get('email_personne')); ?>
+         <?php echo $this->formRow($form->get('pseudo')); ?>
+         <?php echo $this->formRow($form->get('nouveau_mot_de_passe')); ?>
+         <?php echo $this->formRow($form->get('confirm_mot_de_passe')); ?>
+         <?php echo $this->formRow($form->get('statut')); ?>
+         <?php echo $this->formRow($form->get('adresse')); ?>
+         <?php echo $this->formRow($form->get('telephone')); ?>
+         <?php echo $this->formRow($form->get('site_web')); ?>
+         <?php echo $this->formRow($form->get('role')); ?>
+         <div id="BoutonEmplacement"> <!-- EMPLACEMENT DES BOUTONS ANNULER et VALIDER --> </div>
+      <?php echo $this->form()->closeTag(); ?>
+  </div>
+  <div class="cta"><a></a></div>
+</div>
+  
+<?php 
+$listePseudo = $this->listePseudo; 
+
+// CONSTRUCTION DU TABLEAU DES PSEUDO EN JS
+echo "<script type='text/javascript'>";
+echo "var listePseudoJS = ['']; var j = 1;";
+ for($i=0; $i<count($listePseudo); $i++){
+   echo " listePseudoJS[j++] = '" . $listePseudo[$i] . "';";
+ }
+echo "</script>";
+?>
+
+<script>
+$("#BoutonEmplacement").html(
+		"<button style='width: 47%; float: right;' >Valider</button>"+
+        "<button id='annuler' style='width: 47%;'>Annuler</button>"
+		);
+		
+$('#annuler').click(function(){
+	vart=tabUrl[0]+'public/auth/admin';
+    $(location).attr("href",vart);
+    return false;
+});
+
+
+function check(input) {
+	document.getElementById('confirm_mot_de_passe').value = "";
+}
+
+function check2(input) {
+	  if (input.value != document.getElementById('nouveau_mot_de_passe').value) {
+	    input.setCustomValidity('Les deux mots de passe ne correspondent pas.');
+	  } else {
+	    // le champ est valide : on réinitialise le message d'erreur
+	    input.setCustomValidity(''); return false;
+	  }
+}
+
+var actuel_pseudo = $("#pseudo").val();
+function verifPseudo(input) { 
+	for (var i = 0, c = listePseudoJS.length; i < c; i++) {
+
+		if(listePseudoJS[i] == input.value && input.value != actuel_pseudo){ 
+			input.setCustomValidity('Ce pseudo existe dÃ©ja choisissez un autre.');
+			return true;
+		} else {
+		    // le champ est valide : on réinitialise le message d'erreur
+		    input.setCustomValidity('');
+		  }
+	  
+	}
+	
+}
+</script>
+
+<!-- POUR VEROUILLER LES CHAMPS ROLE ET PSEUDO DE L'ADMINISTRATEUR -->
+<?php if( $this->role == "administrateur" ) { ?>
+<script> 
+  //$("#pseudo").attr('disabled', true).css({'background':'#eee'}); 
+  //$("#role").attr('disabled', true).css({'background':'#eee'});
+  //$("#temoin_utilisateur").val(1);
+</script>
+<?php } ?>
+
+
+<?php echo $this->headScript()->appendFile($this->basepath().'/temp_auth/js/index3.js'); ?>
+  

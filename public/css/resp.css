@@ -1,0 +1,125 @@
+.one_half		{ width: 48.00%; }
+.one_third		{ width: 30.66%; }
+.two_third		{ width: 65.33%; }
+.one_fourth		{ width: 22.00%; }
+.three_fourth 	{ width: 74.00%; }
+.one_fifth		{ width: 16.80%; }
+.two_fifth		{ width: 37.60%; }
+.three_fifth	{ width: 58.40%; }
+.four_fifth		{ width: 67.20%; }
+.one_sixth		{ width: 13.33%; }
+.five_sixth		{ width: 82.67%; }
+
+.one_third2		{ width: 32.66%; margin-right: 1%; float: left; margin-right: 0 !important; clear: right;}
+
+.one_half,
+.one_third,
+.two_third,
+.three_fourth,
+.one_fourth,
+.one_fifth,
+.two_fifth,
+.three_fifth,
+.four_fifth,
+.one_sixth,
+.five_sixth {
+	margin-right: 4%;
+	float: left;
+}
+
+
+.one_half:last-child,
+.one_third:last-child,
+.two_third:last-child,
+.three_fourth:last-child,
+.one_fourth:last-child,
+.one_fifth:last-child,
+.two_fifth:last-child,
+.three_fifth:last-child,
+.four_fifth:last-child,
+.one_sixth:last-child,
+.five_sixth:last-child {
+	margin-right: 0 !important;
+	clear: right;
+}
+
+.last {
+	margin-right: 0 !important;
+	clear: right;
+}
+
+/* clearfix */
+.container:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	font-size: 0;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	width: 100%;
+}
+
+img {
+	height: auto;
+	max-width: 100%; /* google maps conflict */
+}
+
+embed,
+object,
+iframe {
+	max-width: 100%;
+}
+
+.embed-container {
+	position: relative;
+	padding-bottom: 56.25%; /* 16/9 ratio */
+	height: 0;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+	.four_fourths > .one_fourth {
+		margin-bottom: 20px;
+		width: 48.00%; 
+	}
+	
+	.four_fourths > .one_fourth:first-child + .one_fourth {
+		margin: 0 !important;
+	}
+}
+
+@media all and (max-width: 479px) {
+	.one_half,
+	.one_third,
+	.two_third,
+	.three_fourth,
+	.one_fourth,
+	.one_fifth,
+	.two_fifth,
+	.three_fifth,
+	.four_fifth,
+	.one_sixth,
+	.five_sixth {
+		width: 100.0%;
+		margin-bottom: 20px;
+	}
+}

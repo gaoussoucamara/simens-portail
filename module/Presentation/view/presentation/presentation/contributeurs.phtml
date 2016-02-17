@@ -1,0 +1,14 @@
+<style>
+#contributeurs,#p3 a{ color: #49afcd; }
+</style>
+<div class="container inner">
+	<h1><?php echo $this->subheadtitle?></h1>
+	<br>
+	<?php foreach ($this->contributeurs as $contributeur) : ?>
+	<article class="post">
+		<a class="title" href="<?php echo $this->escapeHtml($contributeur->site_web_personne); ?>"><h2> <?php echo $this->escapeHtml($contributeur->prenom_personne) . ' ' . $this->escapeHtml($contributeur->nom_personne) . ' (' . $this->escapeHtml($contributeur->statut_personne) . ')';?> </h2></a>
+		<a class="attachment" href=<?php echo $this->basePath() . "/img/personne/" . $this->escapeHtml($contributeur->image_personne);?>><img <?php echo "src=\"" . $this->basePath() . "/img/personne/" . $this->escapeHtml($contributeur->image_personne) . "\""; ?> alt="Image manquante"></a>
+	</article>
+	<hr>
+	<?php endforeach; ?>
+</div>

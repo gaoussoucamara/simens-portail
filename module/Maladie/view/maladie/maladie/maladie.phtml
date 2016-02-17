@@ -1,0 +1,72 @@
+<?php use Auth\View\Helper\DateHelper; ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/w2ui/w2ui-1.4.3.min.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/w2ui/w2ui-1.4.3.min.js'); ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/jpaginate/css/style.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jpaginate/jquery.paginate.js'); ?>
+
+<style>
+#a1 a{ color: #49afcd; }
+/* ELEMENTS */
+
+#contenu{ visibility: hidden }
+hr{margin-bottom: 40px; }
+.post img{ width: 100%; height: 315px; }
+</style>
+
+<script>
+
+$(window).load(function () {
+
+	$('#wait').toggle(false);
+	$('#contenu').fadeIn().css({'visibility':'visible'});
+	 
+});
+</script>
+
+<?php 
+$Control = new DateHelper(); 
+$listeArticle = $this->listeArticle; 
+$nbLigne = count($listeArticle);
+?>
+<div id="wait" style="color: gray; font-size: 15px; text-align: center; margin-top: 80px; font-style: italic;" > <span> Chargement ... </span> </div>
+<div id="contenu" >
+
+<hgroup>
+	<h1>Liste des articles publi&eacute;s</h1>
+	<h3>Ces publications portent sur des maladies</h3>
+</hgroup>
+
+<?php for ($i = 0 ; $i < 100 && $i < $nbLigne ; $i++){ ?> <!-- Pour n'afficher uniquement que les 100 derniers articles -->
+
+    <?php if($listeArticle) { ?>
+	<article class="post">
+		<a class="attachment" href="<?php echo $this->basePath() . '/actualite/details-article/val/'.$listeArticle[$i]['code_article']; ?>"><img src="<?php echo $this->basePath() . '/img/images_articles/'.$listeArticle[$i]['image_article']; ?>" ></a>
+		  <a class="title" href=""><h2><?php echo $listeArticle[$i]['titre_article']; ?> </h2></a>
+			<p style="width: 100%; height: 60px; overflow: hidden;">
+			   <?php echo $listeArticle[$i]['description_article']; ?>
+			</p>
+		<a class="button" href="<?php echo $this->basePath() . '/actualite/details-article/val/'.$listeArticle[$i]['code_article']; ?>">Lire la suite</a>
+		<br>
+		<span class="meta"><i style="font-style: italic;">Par:</i> <a href="#"><?php echo $listeArticle[$i]['prenom_personne'].'  '.$listeArticle[$i]['nom_personne']; ?></a><i style="font-style: italic;"> dans la cat&eacute;gorie: </i> <a href="#"><?php echo $listeArticle[$i]['nom_sous_categorie']; ?></a> </span>
+	</article>
+	<hr>
+	<?php } ?>
+          
+<?php } ?>
+
+</div>
+
+  
+<script>
+
+var base_url = window.location.toString();
+var tabUrl   = base_url.split("public");
+
+
+function visualiser (id){
+	vart=tabUrl[0]+'public/actualite/details-article/val/'+id;
+	$(location).attr("href",vart);
+}
+</script>

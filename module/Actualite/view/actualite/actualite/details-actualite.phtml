@@ -1,0 +1,137 @@
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/w2ui/w2ui-1.4.3.min.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/w2ui/w2ui-1.4.3.min.js'); ?>
+
+<style>
+#a1 a{ color: #49afcd; }
+
+#contenu_article em
+{
+	font-style: italic;
+}
+#contenu_article ol
+{
+	list-style-type:  decimal;
+	/*list-style-type: lower-roman; margin: 1em 0 1em 40px;*/
+	padding-left: 30px;
+	line-height: 20px;
+}
+#contenu_article ol li
+{
+	margin-bottom: 3px;
+}
+
+#contenu_article ul
+{
+	list-style-type:  inherit;
+	/*list-style-type: lower-roman; margin: 1em 0 1em 40px;*/
+	padding-left: 30px;
+	line-height: 20px;
+}
+
+#contenu_article ul li
+{
+	margin-bottom: 3px;
+}
+
+</style>
+<?php 
+use Auth\View\Helper\DateHelper;
+$Controle = new DateHelper();
+$id = $this->id;
+?>
+
+<div class="inner">
+<blockquote>
+        <h1>
+        <?php echo $this->listeActualite->titre; ?>
+        <?php if($this->listeActualite->actu_publie == 0){?>
+          <a href="<?php echo $this->url('actualite', array('action'=>'modification-actualite', 'val'=>$id)); ?>" style='float: right; margin-top: 10px;' title='modifier'> 
+             <img src="<?php echo $this->basepath().'/img/article/Draft_20.png';?>" /> 
+          </a>
+          <a id="publier" href="javascript:publier(<?php echo $id; ?>);" style='float: right;  margin-right: 10px; margin-top: 10px;'> 
+             <img src="<?php echo $this->basepath().'/img/article/Favourites16X16.png';?>" /> 
+          </a>
+        <?php }?>
+       
+        </h1> 
+</blockquote><hr/>
+<?php if ($this->listeActualite->image_actu) { ?>
+         <span style="float: left; box-shadow: 0pt 0pt 12px rgba(0, 0, 0, 0.1); margin-right: 25px; margin-bottom: 5px; margin-top: 15px;"> 
+	         <img style="height: 130px; width: 185px; margin: 5px; border-radius: 2px;" src="<?php echo $this->basePath() . '/img/images_actualites/'.$this->listeActualite->image_actu; ?>" alt="Maladies">
+	     </span>
+<?php } ?>
+
+<div id="contenu_article">
+<?php echo $this->listeActualite->contenu; ?>
+</div>
+
+<div style='padding-top: 50px;'>
+ <span style="float: right;">Source: <?php echo $this->listeActualite->source; ?></span>
+ <?php if($this->listeActualite->actu_publie == 1){?>
+  <span style="float: left;">Publi&eacute; le: <?php echo $Controle->convertDateTime($this->listeActualite->date_publication); ?></span>
+ <?php } ?>
+</div>
+
+<?php if($this->layout()->user['role_personne'] == 'moderateur'){?>
+
+        <div style='margin-top: 70px;'>
+           <span style="margin-top: 55px; font-weight: bold;">Informations sur l'actualit&eacute;:</span> <hr/>
+           <div style='height: 80px; border-left: 1px solid #eee;'>
+              <div style='margin-left: 10px;'> 
+                 <div style='height: 20px;'> <span style='font-family: time new romans;'> Date de l'enregistrement:</span> <span> <?php echo $Controle->convertDateTime($this->listeActualite->date_enregistrement); ?> </span> </div>
+                 <?php if($this->listeActualite->date_modification == '0000-00-00 00:00:00'){ ?>
+                          <div style='height: 20px;'> <span style='font-family: time new romans;'> Date de la derni&egrave;re modification:</span> <span style='font-style: italic;'> non modifi&eacute; </span> </div>
+                 <?php }else { ?>
+                          <div style='height: 20px;'> <span style='font-family: time new romans;'> Date de la derni&egrave;re modification:</span> <span> <?php echo $Controle->convertDateTime($this->listeActualite->date_modification); ?> </span> </div>
+                 <?php } ?>
+                 
+                 <?php if($this->listeActualite->actu_publie == 0){?>
+                   <div style='height: 20px;'> <span style='font-family: time new romans;'> Date de la publication:</span> <span style='color: red; font-style: italic;' > article non encore publi&eacute; </span> </div>              
+                 <?php } else if($this->listeActualite->actu_publie == 1){?>
+                       <div style='height: 20px;'> <span style='font-family: time new romans;'> Date de la publication:</span> <span> <?php echo $Controle->convertDateTime($this->listeActualite->date_publication); ?> </span> </div>
+                 <?php } ?>            
+              </div>
+           </div>
+        </div>
+        
+<?php } ?>
+
+</div>
+
+<script>
+var base_url = window.location.toString();
+var tabUrl = base_url.split("public");
+
+function popupFermer() {
+	$(null).w2overlay(null);
+}
+
+function publier (id){
+	$('#publier').w2overlay({ html: "" +
+		"" +
+		"<div style='border-bottom:1px solid #49afcd; height: 30px; background: #f9f9f9; width: 200px; text-align:center; padding-top: 10px; font-size: 13px; color: #49afcd; font-weight: bold;'>Confirmer la publication</div>" +
+		"<div style='height: 50px; width: 200px; padding-top:10px; text-align:center;'>" +
+		"<button class='btn' style='cursor:pointer;' onclick='popupFermer(); return false;'>Annuler</button>" +
+		"<button class='btn' style='cursor:pointer;' onclick='publication("+id+"); return false;'>Publier</button>" +
+		"</div>" +
+		"" 
+	});
+}
+
+function publication(id) {
+	$(null).w2overlay(null);
+	$.ajax({
+        type: 'POST',
+        url: tabUrl[0]+'public/actualite/publication-actualite',
+        data:'id='+id,
+        success: function() {    
+        	   
+        	vart=tabUrl[0]+'public/actualite/liste-actualite';
+        	$(location).attr("href",vart);
+        	       
+        },
+        error:function(e){console.log(e);alert("Une erreur interne est survenue!");},
+        dataType: "html"
+    });
+}
+</script>

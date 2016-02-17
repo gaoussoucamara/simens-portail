@@ -1,0 +1,76 @@
+<style>
+#l_admin a, #menu_a2 a { color: #49afcd;}
+</style>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/jquery.dataTables.min.js'); ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/css/maladie/cssListeArticle.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/maladie/jsListeArticle.js'); ?>
+
+<?php echo $this->headLink()->prependStylesheet($this->basePath().'/js/w2ui/w2ui-1.4.3.min.css');?>
+<?php echo $this->headScript()->appendFile($this->basepath().'/js/w2ui/w2ui-1.4.3.min.js'); ?>
+
+<div  style="box-shadow: 0 0 4px rgba(0, 0, 0, 5); background: #abbfff; width: 100%; border-top:1px solid #abbfff; border-left:1px solid #abbfff; border-right:1px solid #abbfff; height: 30px; ">
+   <div  style="padding: 10px; text-align:center; font-weight: bold; font-size: 13px; color: black;">
+    Liste des articles &agrave; soumettre 
+   </div>
+</div>
+
+<div style="width: 100%; box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); background: #ffffff; max-height: 1000px; border: 1px solid #cccccc;">
+
+     <div style="width: 97%; margin-left: 10px; padding-bottom:15px; padding-top: 1px;">
+       
+            <table style="padding: 20px;" class="table table-bordered tab_list_mini" id="personne">
+				<thead>
+					<tr style="height: 40px; width:100%;">
+						<th id="titre" style="font-size: 13px;">Titre</th>
+						<th id="date_redaction" style="font-size: 13px;" >Date r&eacute;daction</th>
+						<th id="categorie" style="font-size: 13px;" >Gat&eacute;gorie</th>
+						<th id="date_soumission" style="font-size: 13px;" >Date soumission</th>
+						<th id="options" style="font-size: 13px;" >Options</th>
+						
+					</tr>
+				</thead>
+
+				<tbody id="liste_personne">
+
+					<!-- ************ On affiche les personnes en une liste ordonnï¿½e************ -->
+
+				</tbody>
+
+				<tfoot class="foot_style" style="width:100%;">
+					<tr style="height: auto; width:100%;">
+						<th id="titre_" style='width: 25%;'><input type="text" name="search_browser"
+							value=" Titre" class="search_init" /></th>
+						<th id="date_redaction_" style='width: 20%;'><input type="text" name="search_browser"
+							value=" Date r&eacute;daction" class="search_init" /></th>
+						<th id="categorie_" style='width: 20%;'><input type="text" name="search_browser"
+							value=" Cat&eacute;gorie" class="search_init" /></th>
+						<th id="date_soumission_" style='width: 20%;'><input type="text" name="search_browser"
+							value=" Date soumission" class="search_init" /></th>
+					    <th id="options_" style='width: 15%;'><input type="hidden" name="search_browser"
+							class="" /></th>
+					</tr>
+				</tfoot>
+			</table>
+			
+	  </div>
+</div>
+
+<script>
+initialisation();
+$("#listeA").replaceWith("<a> <img style='position: absolute; margin-top: -8px;' src='<?php echo $this->basePath()."/img/article/42_a2.png"; ?>' title='liste des articles' > </a>");
+$(".listeArt").replaceWith("<a> <img style='margin-right: 6px; float: left;' src='<?php echo $this->basePath()."/img/article/42_a2.png"; ?>' >Liste des articles</a>");
+</script>
+
+
+
+<div id="Popup-Modification-Donner" >
+    <!-- Emplacement des données du pop-up provenant du contrôleur -->
+</div>
+	
+
+
+<style>
+/*Augmenter la largeur des label des champs*/
+.w2ui-field>label{ width: 300px; padding-right: 10px; }
+</style>
